@@ -33,16 +33,6 @@ npm run dev
 
 Vite will print a local URL in the terminal, usually `http://localhost:5173`.
 
-## Environment
-
-Create a `.env.local` file in the project root with the shared passphrase:
-
-```bash
-VITE_SITE_PASSWORD=your-shared-passphrase
-```
-
-The site now shows a lightweight client-side login screen before loading the app. This is meant only as a simple testing gate, not real security, because the passphrase still lives in the frontend bundle.
-
 ## Available Scripts
 
 - `npm run dev` starts the local development server
@@ -78,7 +68,6 @@ src/
 - The app currently uses a small custom router in `src/App.jsx` instead of a routing library.
 - Most portfolio content is hardcoded in component data arrays, which keeps the project simple and easy to edit.
 - Some visual assets are loaded from Figma-hosted URLs, while others live in `src/assets/`.
-- Access is gated by `VITE_SITE_PASSWORD` and is checked in the browser on every fresh load.
 
 ## Build Status
 

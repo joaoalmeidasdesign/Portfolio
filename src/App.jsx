@@ -3,7 +3,6 @@ import Home from "./Home.jsx";
 import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
 import CaseStudyNotice from "./CaseStudyNotice.jsx";
-import LoginGate from "./LoginGate.jsx";
 import { getAppPathname, withBasePath } from "./pathUtils.js";
 
 // Minimal path-based router.
@@ -27,7 +26,6 @@ function App() {
   // Tracks the current page shown by the app shell.
   const [pathname, setPathname] = useState(getAppPathname());
   const isCaseStudyRoute = pathname.startsWith("/case-studies");
-  const [hasAccess, setHasAccess] = useState(isCaseStudyRoute);
 
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.
@@ -39,12 +37,6 @@ function App() {
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
-
-  useEffect(() => {
-    if (isCaseStudyRoute) {
-      setHasAccess(true);
-    }
-  }, [isCaseStudyRoute]);
 
   // Shared navigation helper passed down to pages and the navbar.
   const navigate = (nextPath, options = {}) => {
@@ -66,10 +58,6 @@ function App() {
 
   if (isCaseStudyRoute) {
     return <CaseStudyNotice navigate={navigate} />;
-  }
-
-  if (!hasAccess) {
-    return <LoginGate onUnlock={() => setHasAccess(true)} />;
   }
 
   if (pathname === "/about") {

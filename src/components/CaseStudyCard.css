@@ -1,10 +1,26 @@
 /* Reusable case-study card */
 .case {
+  display: block;
   width: 100%;
   overflow: hidden;
   border-radius: 2.188rem;
   background: rgba(224, 220, 255, 0.15);
   backdrop-filter: blur(12px);
+}
+
+.case-link {
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.case-link:hover,
+.case-link:focus-visible {
+  transform: translateY(-4px);
+  outline: none;
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.2);
 }
 
 .case-header {

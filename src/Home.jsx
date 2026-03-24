@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useRef, useState } from "react";
 import "./Home.css";
 import Nav from "./Nav.jsx";
 import DesignSystem from "./components/System.jsx";
-import CaseStudy from "./components/CaseStudies.jsx";
+import CaseStudyCard from "./components/CaseStudyCard.jsx";
 import DotGrid from "./DotGrid.jsx";
 import arrow from "./assets/arrow.png";
 import arrowFlip from "./assets/arrow_f.png";
@@ -56,6 +56,7 @@ const processItems = [
 // Content model for the selected work cards.
 const caseStudies = [
   {
+    slug: "visitplann",
     img: caseStudyImages.visitPlann,
     time: "8min read",
     title: "VisitPlann",
@@ -64,6 +65,7 @@ const caseStudies = [
       "Guided tourism experience with computer vision: discover points of interest, access rich content, and plan routes. Full case study focused on shipping under constraints and building consistency.",
   },
   {
+    slug: "brancoprata",
     img: caseStudyImages.brancoPrataBase,
     overlayImg: caseStudyImages.brancoPrataOverlay,
     overlayClassName: "case-overlay-devices",
@@ -74,6 +76,7 @@ const caseStudies = [
       "Marketing site for a Portuguese design studio, designed and built in Webflow to improve clarity, credibility, and lead generation.",
   },
   {
+    slug: "knight",
     img: caseStudyImages.knight,
     time: "4min read",
     title: "Knight",
@@ -164,7 +167,10 @@ function Home({ navigate }) {
                 className="hero-button hero-button-secondary"
                 href="/about"
                 onClick={(event) => {
-                  if (!navigate) return;
+                  if (!navigate) {
+                    window.location.href = "/about";
+                    return;
+                  }
                   event.preventDefault();
                   navigate("/about");
                 }}
@@ -208,11 +214,18 @@ function Home({ navigate }) {
         <div className="caseStudy">
           <div className="case-column">
             {caseStudies.slice(0, 2).map((study) => (
-              <CaseStudy key={study.title} {...study} />
+              <CaseStudyCard
+                key={study.title}
+                {...study}
+                href={`/case-studies/${study.slug}`}
+              />
             ))}
           </div>
           <div className="case-column case-column-offset">
-            <CaseStudy {...caseStudies[2]} />
+            <CaseStudyCard
+              {...caseStudies[2]}
+              href={`/case-studies/${caseStudies[2].slug}`}
+            />
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import jsdesignLogo from "/jsdesign.svg";
 import "./Nav.css";
 
-const CONTACT_HREF = "mailto:joao@example.com";
+const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
 
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);

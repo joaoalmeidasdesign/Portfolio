@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Home from "./Home.jsx";
 import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
+import CaseStudyNotice from "./CaseStudyNotice.jsx";
+import LoginGate from "./LoginGate.jsx";
 
 // Minimal path-based router.
 // The project avoids an extra routing dependency and swaps pages by pathname.
@@ -27,6 +29,8 @@ function scrollToHash(hash, behavior = "auto") {
 function App() {
   // Tracks the current page shown by the app shell.
   const [pathname, setPathname] = useState(getPathname());
+  const isCaseStudyRoute = pathname.startsWith("/case-studies");
+  const [hasAccess, setHasAccess] = useState(isCaseStudyRoute);
 
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.
@@ -38,6 +42,12 @@ function App() {
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
+  useEffect(() => {
+    if (isCaseStudyRoute) {
+      setHasAccess(true);
+    }
+  }, [isCaseStudyRoute]);
 
   // Shared navigation helper passed down to pages and the navbar.
   const navigate = (nextPath, options = {}) => {
@@ -53,6 +63,14 @@ function App() {
     window.history.pushState({}, "", nextUrl);
     scrollToHash(options.hash, options.behavior);
   };
+
+  if (isCaseStudyRoute) {
+    return <CaseStudyNotice navigate={navigate} />;
+  }
+
+  if (!hasAccess) {
+    return <LoginGate onUnlock={() => setHasAccess(true)} />;
+  }
 
   if (pathname === "/about") {
     return <About navigate={navigate} />;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./CaseStudies.css";
+import "./CaseStudyCard.css";
 
 const DARK_TEXT_COLOR = "#060010";
 const LIGHT_TEXT_COLOR = "#FFFFFE";
@@ -74,7 +74,7 @@ function sampleImageBrightness(imageSrc, onComplete) {
   image.src = imageSrc;
 }
 
-function caseStudy(props) {
+function CaseStudyCard(props) {
   const [readTimeColor, setReadTimeColor] = useState(LIGHT_TEXT_COLOR);
 
   useEffect(() => {
@@ -98,7 +98,7 @@ function caseStudy(props) {
 
   return (
     // Reusable portfolio card with support for read-time, tags, and optional image overlays.
-    <article className="case">
+    <a className="case case-link" href={props.href || "#"}>
       <div className="case-header">
         <img src={props.img} alt={props.title} crossOrigin="anonymous" />
         {props.overlayImg ? (
@@ -126,8 +126,8 @@ function caseStudy(props) {
         <p className="case-title">{props.title}</p>
         <p className="case-description">{props.description}</p>
       </div>
-    </article>
+    </a>
   );
 }
 
-export default caseStudy;
+export default CaseStudyCard;

@@ -4,13 +4,10 @@ import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
 import CaseStudyNotice from "./CaseStudyNotice.jsx";
 import LoginGate from "./LoginGate.jsx";
+import { getAppPathname, withBasePath } from "./pathUtils.js";
 
 // Minimal path-based router.
 // The project avoids an extra routing dependency and swaps pages by pathname.
-function getPathname() {
-  return window.location.pathname || "/";
-}
-
 // Scroll helper used after navigation when we want to land on a specific section.
 function scrollToHash(hash, behavior = "auto") {
   if (!hash) {
@@ -28,14 +25,14 @@ function scrollToHash(hash, behavior = "auto") {
 
 function App() {
   // Tracks the current page shown by the app shell.
-  const [pathname, setPathname] = useState(getPathname());
+  const [pathname, setPathname] = useState(getAppPathname());
   const isCaseStudyRoute = pathname.startsWith("/case-studies");
   const [hasAccess, setHasAccess] = useState(isCaseStudyRoute);
 
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.
     const handlePopState = () => {
-      setPathname(getPathname());
+      setPathname(getAppPathname());
       window.scrollTo({ top: 0, behavior: "auto" });
     };
 
@@ -51,7 +48,10 @@ function App() {
 
   // Shared navigation helper passed down to pages and the navbar.
   const navigate = (nextPath, options = {}) => {
-    const nextUrl = options.hash ? `${nextPath}#${options.hash}` : nextPath;
+    const nextLocation = withBasePath(nextPath);
+    const nextUrl = options.hash
+      ? `${nextLocation}#${options.hash}`
+      : nextLocation;
 
     if (nextPath !== pathname) {
       window.history.pushState({}, "", nextUrl);

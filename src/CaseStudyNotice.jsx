@@ -1,5 +1,6 @@
 import Nav from "./Nav.jsx";
 import "./CaseStudyNotice.css";
+import { withBasePath } from "./pathUtils.js";
 
 function CaseStudyNotice({ navigate }) {
   return (
@@ -16,7 +17,7 @@ function CaseStudyNotice({ navigate }) {
           </p>
           <a
             className="case-study-notice__button"
-            href="/#work"
+            href={`${withBasePath("/")}#work`}
             onClick={(event) => {
               if (!navigate) return;
               event.preventDefault();

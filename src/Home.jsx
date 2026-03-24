@@ -6,6 +6,7 @@ import CaseStudyCard from "./components/CaseStudyCard.jsx";
 import DotGrid from "./DotGrid.jsx";
 import arrow from "./assets/arrow.png";
 import arrowFlip from "./assets/arrow_f.png";
+import { withBasePath } from "./pathUtils.js";
 
 // Figma-exported icons used in the design-process section.
 const processIcons = {
@@ -165,10 +166,10 @@ function Home({ navigate }) {
               <a
                 // Secondary CTA sends the user to the About page.
                 className="hero-button hero-button-secondary"
-                href="/about"
+                href={withBasePath("/about")}
                 onClick={(event) => {
                   if (!navigate) {
-                    window.location.href = "/about";
+                    window.location.href = withBasePath("/about");
                     return;
                   }
                   event.preventDefault();
@@ -217,14 +218,14 @@ function Home({ navigate }) {
               <CaseStudyCard
                 key={study.title}
                 {...study}
-                href={`/case-studies/${study.slug}`}
+                href={withBasePath(`/case-studies/${study.slug}`)}
               />
             ))}
           </div>
           <div className="case-column case-column-offset">
             <CaseStudyCard
               {...caseStudies[2]}
-              href={`/case-studies/${caseStudies[2].slug}`}
+              href={withBasePath(`/case-studies/${caseStudies[2].slug}`)}
             />
           </div>
         </div>

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import jsdesignLogo from "/jsdesign.svg";
 import "./Nav.css";
+import { assetPath, withBasePath } from "./pathUtils.js";
 
 const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
+const jsdesignLogo = assetPath("jsdesign.svg");
 
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
@@ -66,7 +67,7 @@ function Nav({ currentPath = "/", navigate }) {
       <div className="navbar-inner">
         <a
           className="navbar-logo"
-          href="/"
+          href={withBasePath("/")}
           aria-label="Joao Silva portfolio home"
           onClick={(event) => handleNavigate(event, "/")}
         >
@@ -79,7 +80,7 @@ function Nav({ currentPath = "/", navigate }) {
         <div className="navbar-buttons">
           <a
             className={`nav-btn ${currentPath === "/" ? "nav-btn-active" : ""}`}
-            href="/#work"
+            href={`${withBasePath("/")}#work`}
             onClick={(event) =>
               handleNavigate(event, "/", { hash: "work", behavior: "smooth" })
             }
@@ -88,7 +89,7 @@ function Nav({ currentPath = "/", navigate }) {
           </a>
           <a
             className={`nav-btn ${currentPath === "/about" ? "nav-btn-active" : ""}`}
-            href="/about"
+            href={withBasePath("/about")}
             onClick={(event) => handleNavigate(event, "/about")}
           >
             About
@@ -124,7 +125,7 @@ function Nav({ currentPath = "/", navigate }) {
           <div className="navbar-menu-inner">
             <a
               className={`navbar-menu-link ${currentPath === "/" ? "nav-btn-active" : ""}`}
-              href="/#work"
+              href={`${withBasePath("/")}#work`}
               onClick={(event) =>
                 handleNavigate(event, "/", { hash: "work", behavior: "smooth" })
               }
@@ -133,7 +134,7 @@ function Nav({ currentPath = "/", navigate }) {
             </a>
             <a
               className={`navbar-menu-link ${currentPath === "/about" ? "nav-btn-active" : ""}`}
-              href="/about"
+              href={withBasePath("/about")}
               onClick={(event) => handleNavigate(event, "/about")}
             >
               About

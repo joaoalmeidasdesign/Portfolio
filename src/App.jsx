@@ -3,7 +3,11 @@ import Home from "./Home.jsx";
 import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
 import CaseStudyNotice from "./CaseStudyNotice.jsx";
-import { getAppPathname, withBasePath } from "./pathUtils.js";
+import {
+  getAppPathname,
+  restoreRedirectPath,
+  withBasePath,
+} from "./pathUtils.js";
 
 // Minimal path-based router.
 // The project avoids an extra routing dependency and swaps pages by pathname.
@@ -24,7 +28,10 @@ function scrollToHash(hash, behavior = "auto") {
 
 function App() {
   // Tracks the current page shown by the app shell.
-  const [pathname, setPathname] = useState(getAppPathname());
+  const [pathname, setPathname] = useState(() => {
+    restoreRedirectPath();
+    return getAppPathname();
+  });
   const isCaseStudyRoute = pathname.startsWith("/case-studies");
 
   useEffect(() => {

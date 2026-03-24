@@ -43,6 +43,21 @@ export function getAppPathname() {
   return rawPathname;
 }
 
+export function restoreRedirectPath() {
+  const currentUrl = new URL(window.location.href);
+  const redirectedPath = currentUrl.searchParams.get("redirect");
+
+  if (!redirectedPath) {
+    return;
+  }
+
+  const redirectUrl = new URL(redirectedPath, window.location.origin);
+  const nextPathname = withBasePath(redirectUrl.pathname);
+  const nextUrl = `${nextPathname}${redirectUrl.search}${redirectUrl.hash}`;
+
+  window.history.replaceState({}, "", nextUrl);
+}
+
 export function withBasePath(pathname = "/") {
   const normalizedPathname = pathname.startsWith("/") ? pathname : `/${pathname}`;
 

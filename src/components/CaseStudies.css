@@ -91,10 +91,6 @@
   line-height: 1.5;
 }
 
-.case:first-child .read-time {
-  color: #060010;
-}
-
 /* Mobile card adjustments */
 @media (max-width: 799px) {
   .case {

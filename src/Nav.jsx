@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import jsdesignLogo from "/jsdesign.svg";
 import "./Nav.css";
 
+const CONTACT_HREF = "mailto:joao@example.com";
+
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
   // Controls the fullscreen menu on tablet/mobile.
@@ -91,6 +93,9 @@ function Nav({ currentPath = "/", navigate }) {
           >
             About
           </a>
+          <a className="nav-btn" href={CONTACT_HREF}>
+            Contact
+          </a>
           <a
             className="nav-btn nav-btn-accent"
             href="https://1drv.ms/b/c/902868921bb862fd/EUibngL2MWhBtZUnwByhWCQBVbMmWpby9EBiJsfv59ac-A?e=hD8nGa"
@@ -135,7 +140,7 @@ function Nav({ currentPath = "/", navigate }) {
             </a>
             <a
               className="navbar-menu-link"
-              href="mailto:joao@example.com"
+              href={CONTACT_HREF}
               onClick={() => setIsMenuOpen(false)}
             >
               Contact

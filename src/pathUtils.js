@@ -65,10 +65,3 @@ export function withBasePath(pathname = "/") {
 
   return `${normalizedBasePath}${normalizedPathname}`;
 }
-
-export function assetPath(assetName) {
-  const normalizedAssetName = assetName.replace(/^\//, "");
-  const assetBasePath = normalizedBasePath || "";
-
-  return `${assetBasePath}/${normalizedAssetName}`;
-}

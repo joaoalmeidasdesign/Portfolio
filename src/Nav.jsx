@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import "./Nav.css";
-import { assetPath, withBasePath } from "./pathUtils.js";
+import { withBasePath } from "./pathUtils.js";
 
 const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
-const jsdesignLogo = assetPath("jsdesign.svg");
 
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
+  const logoSrc = withBasePath("/jsdesign.svg");
   // Controls the fullscreen menu on tablet/mobile.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -72,7 +72,7 @@ function Nav({ currentPath = "/", navigate }) {
           onClick={(event) => handleNavigate(event, "/")}
         >
           <img
-            src={jsdesignLogo}
+            src={logoSrc}
             alt="Joao Silva logo"
             style={{ height: "40px" }}
           />
@@ -111,7 +111,9 @@ function Nav({ currentPath = "/", navigate }) {
           className={`nav-toggle ${isMenuOpen ? "is-open" : ""}`}
           type="button"
           aria-expanded={isMenuOpen}
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           onClick={() => setIsMenuOpen((open) => !open)}
         >
           <span className="nav-toggle-line nav-toggle-line-top" />

@@ -10,7 +10,7 @@ function CaseStudyNotice({ navigate }) {
         <section className="case-study-notice__card">
           <p className="case-study-notice__eyebrow">Case studies</p>
           <h1 className="case-study-notice__title">
-            All case studies will be available until April 3rd
+            All case studies will be available after April 3rd
           </h1>
           <p className="case-study-notice__copy">
             The full project breakdowns are being prepared for private review.

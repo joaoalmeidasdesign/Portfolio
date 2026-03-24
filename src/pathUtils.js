@@ -1,5 +1,3 @@
-const baseUrl = import.meta.env.BASE_URL || "/";
-
 function resolveRuntimeBasePath() {
   if (import.meta.env.DEV) {
     return "";
@@ -70,10 +68,7 @@ export function withBasePath(pathname = "/") {
 
 export function assetPath(assetName) {
   const normalizedAssetName = assetName.replace(/^\//, "");
+  const assetBasePath = normalizedBasePath || "";
 
-  if (!normalizedBasePath) {
-    return `${baseUrl}${normalizedAssetName}`;
-  }
-
-  return `${normalizedBasePath}/${normalizedAssetName}`;
+  return `${assetBasePath}/${normalizedAssetName}`;
 }

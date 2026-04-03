@@ -6,26 +6,30 @@ import CaseStudyCard from "./components/CaseStudyCard.jsx";
 import DotGrid from "./DotGrid.jsx";
 import arrow from "./assets/arrow.png";
 import arrowFlip from "./assets/arrow_f.png";
+import searchDiscovery from "./assets/Search & Discovery.png";
+import strategyPlanning from "./assets/Strategy & Planning.png";
+import designPrototype from "./assets/Design & Prototype.png";
+import collaborateIterate from "./assets/Collaborate & iterate.png";
+import visitPlannCover from "./assets/visitplann-cover.svg";
+import brancoPrataBase from "./assets/brancoprata-base.svg";
+import brancoPrataOverlay from "./assets/brancoprata-overlay.svg";
+import knightCover from "./assets/knight-cover.svg";
 import { withBasePath } from "./pathUtils.js";
 
-// Figma-exported icons used in the design-process section.
+// Local icons used in the design-process section.
 const processIcons = {
-  shipped: "https://www.figma.com/api/mcp/asset/7a26a5e1-68e9-43a3-880a-88f5841c37b8",
-  flow: "https://www.figma.com/api/mcp/asset/a84cd394-45a1-48e0-aab7-e20cdd91102c",
-  quality: "https://www.figma.com/api/mcp/asset/2bfdc636-3b95-4a2d-8b14-f551e5554939",
-  execution: "https://www.figma.com/api/mcp/asset/12da8429-7338-4bf8-860a-f13a2e7f699d",
+  shipped: searchDiscovery,
+  flow: strategyPlanning,
+  quality: designPrototype,
+  execution: collaborateIterate,
 };
 
-// Figma-exported imagery used by the case-study cards.
+// Local case-study imagery. The original Figma MCP asset links are no longer available.
 const caseStudyImages = {
-  visitPlann:
-    "https://www.figma.com/api/mcp/asset/f764a13a-a729-42a3-9e51-35ccdf9d1a37",
-  brancoPrataBase:
-    "https://www.figma.com/api/mcp/asset/1bbac50d-517b-4e66-9ef4-6c3f9abf4c59",
-  brancoPrataOverlay:
-    "https://www.figma.com/api/mcp/asset/83e7cadf-352e-449d-ac5c-da5c6707272e",
-  knight:
-    "https://www.figma.com/api/mcp/asset/c8f37c4d-557c-46b3-a821-717ab7de8514",
+  visitPlann: visitPlannCover,
+  brancoPrataBase,
+  brancoPrataOverlay,
+  knight: knightCover,
 };
 
 // Content model for the process cards.

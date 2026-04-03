@@ -67,7 +67,7 @@ src/
 
 - The app currently uses a small custom router in `src/App.jsx` instead of a routing library.
 - Most portfolio content is hardcoded in component data arrays, which keeps the project simple and easy to edit.
-- Some visual assets are loaded from Figma-hosted URLs, while others live in `src/assets/`.
+- Visual assets now live locally in `src/assets/` and `public/`.
 
 ## Build Status
 

@@ -1,9 +1,8 @@
 import Nav from "./Nav.jsx";
 import "./About.css";
+import aboutImage from "./assets/about-portrait.svg";
 
-// Portrait currently loaded from a temporary Figma asset URL.
-const aboutImage =
-  "https://www.figma.com/api/mcp/asset/4ba6ba91-3c0e-4020-bd23-5d9b06353446";
+// Local portrait placeholder used until the final portrait asset is added to the repo.
 
 // Personal interests shown in the "Beyond the Screen" section.
 const beyondTheScreenItems = [

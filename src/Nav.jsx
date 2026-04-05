@@ -22,16 +22,18 @@ function Nav({ currentPath = "/", navigate }) {
     // Adds a blur treatment once the user scrolls away from the top.
     const handleScroll = () => {
       if (navRef.current) {
-        if (window.scrollY > 10) {
+        if (window.scrollY > 10 && !isMenuOpen) {
           navRef.current.classList.add("navbar-blur");
         } else {
           navRef.current.classList.remove("navbar-blur");
         }
       }
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   useEffect(() => {
     // Escape always closes the fullscreen menu.
@@ -54,16 +56,37 @@ function Nav({ currentPath = "/", navigate }) {
     // Prevent page scrolling behind the fullscreen menu.
     if (!isMenuOpen) return undefined;
 
-    const previousOverflow = document.body.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousBodyTouchAction = document.body.style.touchAction;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousHtmlOverscrollBehavior =
+      document.documentElement.style.overscrollBehavior;
+
+    const preventScroll = (event) => {
+      event.preventDefault();
+    };
+
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.overscrollBehavior = "none";
     document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.documentElement.style.overscrollBehavior =
+        previousHtmlOverscrollBehavior;
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.touchAction = previousBodyTouchAction;
     };
   }, [isMenuOpen]);
 
   return (
-    <nav className="navbar" ref={navRef}>
+    <nav className={`navbar ${isMenuOpen ? "navbar-menu-open" : ""}`} ref={navRef}>
       <div className="navbar-inner">
         <a
           className="navbar-logo"

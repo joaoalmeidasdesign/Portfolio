@@ -70,7 +70,14 @@
 
 .navbar-blur {
   background: rgba(6, 0, 16, 0.25);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.navbar-menu-open {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .nav-toggle,
@@ -167,13 +174,19 @@
     justify-content: flex-end;
     width: 100vw;
     min-height: 100vh;
+    height: 100dvh;
     padding: 8.1rem 0.7rem 1rem 1rem;
-    background: rgba(6, 0, 16, 0.58);
-    backdrop-filter: blur(5.5px);
+    background:
+      linear-gradient(180deg, rgba(4, 0, 12, 0.34) 0%, rgba(4, 0, 12, 0.42) 100%),
+      rgba(6, 0, 16, 0.2);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
     animation: navbar-menu-fade 0.28s ease;
   }
 
   .navbar-menu-inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -212,7 +225,11 @@
     padding-top: 8.6875rem;
     padding-right: 0.85rem;
     padding-left: 1rem;
-    backdrop-filter: blur(6px);
+  }
+
+  .navbar-menu::before {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
   }
 
   .navbar-menu-inner {

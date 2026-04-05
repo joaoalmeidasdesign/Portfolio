@@ -65,6 +65,10 @@
     justify-items: center;
   }
 
+  .card-description {
+    margin: auto;
+  }
+
   .card-header {
     justify-content: center;
   }

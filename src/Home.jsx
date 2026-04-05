@@ -64,6 +64,7 @@ const caseStudies = [
     slug: "visitplann",
     img: caseStudyImages.visitPlann,
     time: "8min read",
+    readTimeColor: "#FFFFFE",
     title: "VisitPlann",
     tags: ["Mobile App", "Shipped", "Product Design"],
     description:
@@ -75,6 +76,7 @@ const caseStudies = [
     overlayImg: caseStudyImages.brancoPrataOverlay,
     overlayClassName: "case-overlay-devices",
     time: "3min read",
+    readTimeColor: "#060010",
     title: "BrancoPrata",
     tags: ["Website", "In Development"],
     description:
@@ -84,6 +86,7 @@ const caseStudies = [
     slug: "knight",
     img: caseStudyImages.knight,
     time: "4min read",
+    readTimeColor: "#FFFFFE",
     title: "Knight",
     tags: ["Mobile App", "In Production", "Product Design"],
     description:

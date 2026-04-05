@@ -78,6 +78,11 @@ function CaseStudyCard(props) {
   const [readTimeColor, setReadTimeColor] = useState(LIGHT_TEXT_COLOR);
 
   useEffect(() => {
+    if (props.readTimeColor) {
+      setReadTimeColor(props.readTimeColor);
+      return undefined;
+    }
+
     if (!props.img) {
       setReadTimeColor(LIGHT_TEXT_COLOR);
       return;
@@ -94,7 +99,7 @@ function CaseStudyCard(props) {
     return () => {
       isActive = false;
     };
-  }, [props.img]);
+  }, [props.img, props.readTimeColor]);
 
   return (
     // Reusable portfolio card with support for read-time, tags, and optional image overlays.

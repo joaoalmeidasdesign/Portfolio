@@ -44,6 +44,8 @@ const galleryItems = Array.from({ length: 4 }, (_, index) => ({
   src: aboutGalleryPhoto,
 }));
 
+const carouselItems = [...galleryItems, ...galleryItems];
+
 function About({ navigate }) {
   return (
     <>
@@ -128,16 +130,21 @@ function About({ navigate }) {
         </section>
 
         <section className="about-gallery" aria-label="About page photography">
-          {galleryItems.map((item) => (
-            <div className="about-gallery-item" key={item.id}>
-              <img
-                className="about-gallery-image"
-                src={item.src}
-                alt=""
-                aria-hidden="true"
-              />
-            </div>
-          ))}
+          <div className="about-gallery-track">
+            {carouselItems.map((item, index) => (
+              <div
+                className="about-gallery-item"
+                key={`${item.id}-${index + 1}`}
+              >
+                <img
+                  className="about-gallery-image"
+                  src={item.src}
+                  alt=""
+                  aria-hidden="true"
+                />
+              </div>
+            ))}
+          </div>
         </section>
       </main>
     </>

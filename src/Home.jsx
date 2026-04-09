@@ -73,6 +73,7 @@ const caseStudies = [
   },
   {
     slug: "brancoprata",
+    hidden: true,
     img: caseStudyImages.brancoPrataBase,
     overlayImg: caseStudyImages.brancoPrataOverlay,
     overlayClassName: "case-overlay-devices",
@@ -94,6 +95,8 @@ const caseStudies = [
       "Chess learning app focused on building skill through structured practice. Mini case study covering the current product direction and upcoming closed beta goals.",
   },
 ];
+
+const visibleCaseStudies = caseStudies.filter((study) => !study.hidden);
 
 // Main landing page of the portfolio.
 function Home({ navigate }) {
@@ -221,7 +224,7 @@ function Home({ navigate }) {
       <section className="selected-work" id="work">
         <div className="caseStudy">
           <div className="case-column">
-            {caseStudies.slice(0, 2).map((study) => (
+            {visibleCaseStudies.slice(0, 1).map((study) => (
               <CaseStudyCard
                 key={study.title}
                 {...study}
@@ -230,10 +233,13 @@ function Home({ navigate }) {
             ))}
           </div>
           <div className="case-column case-column-offset">
-            <CaseStudyCard
-              {...caseStudies[2]}
-              href={withBasePath(`/case-studies/${caseStudies[2].slug}`)}
-            />
+            {visibleCaseStudies.slice(1, 2).map((study) => (
+              <CaseStudyCard
+                key={study.title}
+                {...study}
+                href={withBasePath(`/case-studies/${study.slug}`)}
+              />
+            ))}
           </div>
         </div>
       </section>

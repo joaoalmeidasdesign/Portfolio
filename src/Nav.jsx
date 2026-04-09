@@ -122,7 +122,7 @@ function Nav({ currentPath = "/", navigate }) {
           </a>
           <a
             className="nav-btn nav-btn-accent"
-            href="https://1drv.ms/b/c/902868921bb862fd/EUibngL2MWhBtZUnwByhWCQBVbMmWpby9EBiJsfv59ac-A?e=hD8nGa"
+            href="https://1drv.ms/b/c/902868921bb862fd/IQDNMAmBmP0gR44XNho5mpgxAV1T9XiF9BEU2igpdQ6kjgQ?e=jnJMzN"
             target="_blank"
             rel="noreferrer"
           >

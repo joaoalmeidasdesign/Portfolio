@@ -3,6 +3,7 @@
   position: sticky;
   top: 0;
   z-index: 20;
+  min-height: 4.55rem;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -87,6 +88,17 @@
 
 /* Tablet + mobile menu logic */
 @media (max-width: 1279px) {
+  .navbar.navbar-menu-open .navbar-inner {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    max-width: var(--content-max);
+    padding-top: calc(0.9rem + env(safe-area-inset-top, 0rem));
+    padding-bottom: 0.9rem;
+    transform: translateX(-50%);
+  }
+
   .navbar-buttons {
     display: none;
   }
@@ -175,7 +187,7 @@
     width: 100vw;
     min-height: 100vh;
     height: 100dvh;
-    padding: 8.1rem 0.7rem 1rem 1rem;
+    padding: calc(7rem + env(safe-area-inset-top, 0rem)) 0.7rem 1rem 1rem;
     background:
       linear-gradient(180deg, rgba(4, 0, 12, 0.34) 0%, rgba(4, 0, 12, 0.42) 100%),
       rgba(6, 0, 16, 0.2);
@@ -213,7 +225,13 @@
 /* Mobile-only sizing refinements */
 @media (max-width: 799px) {
   .navbar {
+    min-height: 3.65rem;
     padding: 0.7rem 0;
+  }
+
+  .navbar.navbar-menu-open .navbar-inner {
+    padding-top: calc(0.7rem + env(safe-area-inset-top, 0rem));
+    padding-bottom: 0.7rem;
   }
 
   .navbar-inner {
@@ -222,14 +240,9 @@
   }
 
   .navbar-menu {
-    padding-top: 8.6875rem;
+    padding-top: calc(7.75rem + env(safe-area-inset-top, 0rem));
     padding-right: 0.85rem;
     padding-left: 1rem;
-  }
-
-  .navbar-menu::before {
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
   }
 
   .navbar-menu-inner {

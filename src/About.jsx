@@ -2,7 +2,10 @@ import Nav from "./Nav.jsx";
 import Footer from "./Footer.jsx";
 import "./About.css";
 import aboutHeroPhoto from "./assets/about-hero-photo.jpg";
-import aboutGalleryPhoto from "./assets/about-gallery-photo.jpg";
+import carouselImageOne from "./assets/carrousel 1.jpg";
+import carouselImageTwo from "./assets/Carrousel 2.jpg";
+import carouselImageThree from "./assets/Carrousel 3.jpg";
+import carouselImageFour from "./assets/carrousel 4.jpg";
 import strengthClarityIcon from "./assets/about-strength-clarity.svg";
 import strengthSystemIcon from "./assets/about-strength-system.svg";
 import strengthEngineersIcon from "./assets/about-strength-engineers.svg";
@@ -40,10 +43,12 @@ const beyondTheScreenItems = [
   "Riding my motorcycle through mountain roads",
 ];
 
-const galleryItems = Array.from({ length: 4 }, (_, index) => ({
-  id: `gallery-${index + 1}`,
-  src: aboutGalleryPhoto,
-}));
+const galleryItems = [
+  { id: "gallery-1", src: carouselImageOne },
+  { id: "gallery-2", src: carouselImageTwo },
+  { id: "gallery-3", src: carouselImageThree },
+  { id: "gallery-4", src: carouselImageFour },
+];
 
 const carouselItems = [...galleryItems, ...galleryItems];
 

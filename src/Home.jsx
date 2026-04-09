@@ -4,13 +4,14 @@ import Nav from "./Nav.jsx";
 import DesignSystem from "./components/System.jsx";
 import CaseStudyCard from "./components/CaseStudyCard.jsx";
 import DotGrid from "./DotGrid.jsx";
+import Footer from "./Footer.jsx";
 import arrow from "./assets/arrow.png";
 import arrowFlip from "./assets/arrow_f.png";
 import searchDiscovery from "./assets/Search & Discovery.png";
 import strategyPlanning from "./assets/Strategy & Planning.png";
 import designPrototype from "./assets/Design & Prototype.png";
 import collaborateIterate from "./assets/Collaborate & iterate.png";
-import visitPlannCover from "./assets/visitplann-cover.svg";
+import visitPlannCover from "./assets/visitplann-cover.png";
 import brancoPrataBase from "./assets/brancoprata-base.svg";
 import brancoPrataOverlay from "./assets/brancoprata-overlay.svg";
 import knightCover from "./assets/knight-cover.svg";
@@ -218,7 +219,6 @@ function Home({ navigate }) {
 
       {/* Selected work section. */}
       <section className="selected-work" id="work">
-        <h2 className="selected-work-title">Selected Work</h2>
         <div className="caseStudy">
           <div className="case-column">
             {caseStudies.slice(0, 2).map((study) => (
@@ -237,6 +237,8 @@ function Home({ navigate }) {
           </div>
         </div>
       </section>
+
+      <Footer currentPath="/" navigate={navigate} />
     </>
   );
 }

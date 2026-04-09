@@ -1,4 +1,5 @@
 import Nav from "./Nav.jsx";
+import Footer from "./Footer.jsx";
 import "./About.css";
 import aboutHeroPhoto from "./assets/about-hero-photo.jpg";
 import aboutGalleryPhoto from "./assets/about-gallery-photo.jpg";
@@ -147,6 +148,7 @@ function About({ navigate }) {
           </div>
         </section>
       </main>
+      <Footer currentPath="/about" navigate={navigate} />
     </>
   );
 }

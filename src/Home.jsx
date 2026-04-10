@@ -14,7 +14,7 @@ import collaborateIterate from "./assets/Collaborate & iterate.png";
 import visitPlannCover from "./assets/visitplann-cover.png";
 import brancoPrataBase from "./assets/brancoprata-base.svg";
 import brancoPrataOverlay from "./assets/brancoprata-overlay.svg";
-import knightCover from "./assets/knight-cover.svg";
+import knightCover from "./assets/knight-cover.png";
 import { withBasePath } from "./pathUtils.js";
 
 // Local icons used in the design-process section.

@@ -36,14 +36,14 @@
 
 .navbar-buttons {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   align-items: center;
 }
 
 .nav-btn,
 .navbar-menu-link {
   color: var(--color-secondary);
-  font-size: 1.25rem;
+  font-size: var(--fs-ui);
   font-weight: 500;
   line-height: 1;
   text-decoration: none;
@@ -202,13 +202,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2.5rem;
+    gap: calc(var(--space-xl) + 0.5rem);
     width: auto;
     margin-left: auto;
   }
 
   .navbar-menu-link {
-    font-size: 3rem;
+    font-size: var(--fs-menu);
     font-weight: 700;
     line-height: 1;
     color: var(--color-secondary);
@@ -250,7 +250,7 @@
   }
 
   .navbar-menu-link {
-    font-size: 3rem;
+    font-size: var(--fs-menu);
     letter-spacing: -0.03em;
   }
 }

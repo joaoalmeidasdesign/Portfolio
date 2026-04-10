@@ -9,6 +9,28 @@
   --color-text: #fffffe;
   --color-secondary: #e0dcff;
   --color-accent: #7f5af0;
+  --fs-display: clamp(4rem, 11vw, 8rem);
+  --fs-heading-xl: clamp(2.75rem, 4.5vw, 3rem);
+  --fs-heading-hero-support: 2rem;
+  --fs-heading-md: 1.5rem;
+  --fs-heading-sm: 1.25rem;
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.95rem;
+  --fs-body-meta: 1.1rem;
+  --fs-label: 0.875rem;
+  --fs-eyebrow: 0.85rem;
+  --fs-ui: 1.25rem;
+  --fs-menu: 3rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 6rem;
 }
 
 body {
@@ -26,28 +48,15 @@ body {
   padding: 0;
 }
 
-/* Tablet: 800 - 1279 */
-@media (min-width: 800px) and (max-width: 1279px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-}
-
-/* Mobile: 1 - 799 */
 @media (max-width: 799px) {
-  .hero-title {
-    font-size: 4rem;
+  :root {
+    --fs-heading-xl: clamp(2.25rem, 12vw, 3rem);
+    --fs-heading-hero-support: 1.5rem;
+    --fs-heading-md: 2rem;
+    --fs-heading-sm: 1.15rem;
+    --fs-body-lg: 1rem;
+    --fs-body-sm: 0.9rem;
   }
-  .hero-greeting,
-  .hero-subtitle {
-    font-size: 1.5rem;
-  }
-}
-
-/* Small global element defaults */
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {

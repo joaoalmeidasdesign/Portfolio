@@ -5,7 +5,7 @@
   padding: 4.6875rem var(--page-gutter) 0;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: var(--space-2xl);
 }
 
 .about-intro {
@@ -33,12 +33,12 @@
 .about-copy {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: calc(var(--space-lg) + 0.25rem);
 }
 
 .about-title {
   margin: 0;
-  font-size: clamp(2.75rem, 4.5vw, 3rem);
+  font-size: var(--fs-heading-xl);
   font-weight: 900;
   line-height: 1.4;
   letter-spacing: -0.03em;
@@ -55,11 +55,10 @@
 
 .about-lead,
 .about-story-body,
-.about-list,
-.about-strength-copy {
+.about-list {
   margin: 0;
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: var(--fs-body-lg);
   font-weight: 300;
   line-height: 1.5;
 }
@@ -73,13 +72,13 @@
 .about-story-block {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .about-story-title {
   margin: 0;
   color: var(--color-secondary);
-  font-size: 1.25rem;
+  font-size: var(--fs-heading-sm);
   font-weight: 700;
   line-height: 1.5;
 }
@@ -106,7 +105,7 @@
 .about-strengths-title {
   margin: 0;
   color: rgba(224, 220, 255, 0.75);
-  font-size: clamp(2.75rem, 4.5vw, 3rem);
+  font-size: var(--fs-heading-xl);
   font-weight: 900;
   line-height: 1.4;
   letter-spacing: -0.03em;
@@ -116,7 +115,7 @@
 .about-strengths-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.1rem;
+  gap: calc(var(--space-md) + 0.1rem);
   padding-top: 0.625rem;
   align-items: start;
 }
@@ -125,7 +124,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: calc(var(--space-sm) + 0.15rem);
   min-height: 9.25rem;
   padding-right: 0.35rem;
   min-width: 0;
@@ -156,7 +155,7 @@
 .about-strength-header {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: calc(var(--space-sm) + 0.1rem);
 }
 
 .about-strength-icon-wrap {
@@ -180,16 +179,18 @@
 .about-strength-title {
   margin: 0;
   color: var(--color-text);
-  font-size: 1.25rem;
+  font-size: var(--fs-heading-sm);
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
 .about-strength-copy {
+  margin: 0;
+  padding: 0;
   max-width: 18.5rem;
   color: var(--color-secondary);
-  font-size: 0.95rem;
+  font-size: var(--fs-body);
   font-weight: 400;
   line-height: 1.45;
 }
@@ -297,7 +298,7 @@
 
   .about-title,
   .about-strengths-title {
-    font-size: clamp(2.25rem, 12vw, 3rem);
+    font-size: var(--fs-heading-xl);
     line-height: 1.2;
   }
 
@@ -321,14 +322,14 @@
   }
 
   .about-strength-title {
-    font-size: 1.15rem;
+    font-size: var(--fs-heading-sm);
     text-align: center;
   }
 
   .about-strength-copy {
     margin: auto;
     max-width: 19.5rem;
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     text-align: center;
   }
 

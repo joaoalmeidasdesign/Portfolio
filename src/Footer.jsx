@@ -6,7 +6,7 @@ const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
 const CV_HREF =
   "https://1drv.ms/b/c/902868921bb862fd/EUibngL2MWhBtZUnwByhWCQBVbMmWpby9EBiJsfv59ac-A?e=hD8nGa";
 
-function Footer({ currentPath = "/", navigate }) {
+function Footer({ navigate }) {
   const currentYear = new Date().getFullYear();
 
   const handleNavigate = (event, nextPath, options) => {

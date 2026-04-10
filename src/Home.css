@@ -28,12 +28,12 @@
   position: relative;
   display: grid;
   width: 100%;
-  gap: 2.25rem;
+  gap: var(--space-xl);
   margin-top: 3.5rem;
 }
 
 .hero-greeting {
-  font-size: 2rem;
+  font-size: var(--fs-heading-hero-support);
   font-weight: 400;
   line-height: 0.9;
   color: var(--color-text);
@@ -41,7 +41,7 @@
 
 .hero-title {
   margin: 0;
-  font-size: clamp(4rem, 11vw, 8rem);
+  font-size: var(--fs-display);
   font-weight: 900;
   line-height: 1.1;
   text-align: center;
@@ -54,7 +54,7 @@
 .hero-subtitle {
   width: min(100%, 37.125rem);
   margin-left: auto;
-  font-size: 2rem;
+  font-size: var(--fs-heading-hero-support);
   font-weight: 400;
   line-height: 0.9;
   text-align: right;
@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-md);
   margin-top: 13rem;
 }
 
@@ -75,14 +75,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .hero-description {
   max-width: 44.25rem;
   margin: 0;
   color: var(--color-text);
-  font-size: 1.125rem;
+  font-size: var(--fs-body-lg);
   font-weight: 400;
   line-height: 1.5;
   text-align: center;
@@ -113,14 +113,14 @@
 
 .hero-availability-text {
   color: var(--color-secondary);
-  font-size: 1rem;
+  font-size: var(--fs-body);
   font-weight: 400;
   line-height: 1.5;
 }
 
 .hero-actions {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-md);
   align-items: center;
 }
 
@@ -134,7 +134,7 @@
   border-radius: 0.5rem;
   border: 1px solid transparent;
   color: var(--color-text);
-  font-size: 1.25rem;
+  font-size: var(--fs-ui);
   font-weight: 600;
   text-decoration: none;
   transition:
@@ -190,7 +190,7 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.1rem;
+  gap: calc(var(--space-md) + 0.1rem);
   align-items: start;
   padding-top: 3.75rem;
   padding-bottom: 1rem;
@@ -275,7 +275,7 @@
 .selected-work {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-lg);
   margin-top: 7.5rem;
   padding: 0 var(--page-gutter) 6rem;
 }
@@ -283,14 +283,14 @@
 .caseStudy {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1.25rem;
+  gap: calc(var(--space-md) + 0.25rem);
   align-items: start;
 }
 
 .case-column {
   display: flex;
   flex-direction: column;
-  gap: 2.375rem;
+  gap: calc(var(--space-lg) + 0.875rem);
 }
 
 .case-column-offset {
@@ -358,13 +358,13 @@
   }
 
   .hero-content {
-    gap: 2.8rem;
+    gap: calc(var(--space-xl) + 0.8rem);
     margin-top: 1.75rem;
   }
 
   .hero-greeting,
   .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: var(--fs-heading-hero-support);
   }
 
   .hero-subtitle {
@@ -374,13 +374,13 @@
   }
 
   .hero-details {
-    gap: 1rem;
+    gap: var(--space-md);
     margin-top: 2.75rem;
   }
 
   .hero-description {
     max-width: 22rem;
-    font-size: 1rem;
+    font-size: var(--fs-body);
     line-height: 1.4;
   }
 
@@ -392,7 +392,7 @@
   .hero-button {
     min-height: 2.875rem;
     padding: 0.75rem 1rem;
-    font-size: 1.25rem;
+    font-size: var(--fs-ui);
   }
 
   .design-steps {
@@ -418,7 +418,7 @@
   }
 
   .selected-work-title {
-    font-size: 3rem;
+    font-size: var(--fs-heading-xl);
   }
 
   .caseStudy {

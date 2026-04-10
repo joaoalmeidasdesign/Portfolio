@@ -3,6 +3,8 @@ import "./Nav.css";
 import { withBasePath } from "./pathUtils.js";
 
 const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
+const CV_HREF =
+  "https://1drv.ms/b/c/902868921bb862fd/IQDNMAmBmP0gR44XNho5mpgxAV1T9XiF9BEU2igpdQ6kjgQ?e=jnJMzN";
 
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
@@ -122,7 +124,7 @@ function Nav({ currentPath = "/", navigate }) {
           </a>
           <a
             className="nav-btn nav-btn-accent"
-            href="https://1drv.ms/b/c/902868921bb862fd/IQDNMAmBmP0gR44XNho5mpgxAV1T9XiF9BEU2igpdQ6kjgQ?e=jnJMzN"
+            href={CV_HREF}
             target="_blank"
             rel="noreferrer"
           >
@@ -173,7 +175,7 @@ function Nav({ currentPath = "/", navigate }) {
             </a>
             <a
               className="navbar-menu-link nav-btn-accent"
-              href="https://1drv.ms/b/c/902868921bb862fd/EUibngL2MWhBtZUnwByhWCQBVbMmWpby9EBiJsfv59ac-A?e=hD8nGa"
+              href={CV_HREF}
               target="_blank"
               rel="noreferrer"
               onClick={() => setIsMenuOpen(false)}

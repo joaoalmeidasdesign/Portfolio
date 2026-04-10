@@ -81,14 +81,14 @@
 .site-footer-copy {
   max-width: 30rem;
   color: rgba(255, 255, 254, 0.62);
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body);
   font-weight: 300;
   line-height: 1.5;
 }
 
 .site-footer-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-lg);
 }
 

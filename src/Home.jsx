@@ -16,6 +16,10 @@ import brancoPrataBase from "./assets/brancoprata-base.svg";
 import brancoPrataOverlay from "./assets/brancoprata-overlay.svg";
 import knightCover from "./assets/knight-cover.png";
 import { withBasePath } from "./pathUtils.js";
+import { getReadTimeLabel } from "./utils/readTime.js";
+import { visitPlannCaseStudyCard } from "./caseStudies/visitPlannCaseStudyContent.js";
+import { brancoPrataCaseStudyCard } from "./caseStudies/brancoPrataCaseStudyContent.js";
+import { knightCaseStudyCard } from "./caseStudies/knightCaseStudyContent.js";
 
 // Local icons used in the design-process section.
 const processIcons = {
@@ -60,41 +64,29 @@ const processItems = [
 ];
 
 // Content model for the selected work cards.
-const caseStudies = [
+const caseStudyDefinitions = [
   {
-    slug: "visitplann",
-    img: caseStudyImages.visitPlann,
-    time: "8min read",
-    readTimeColor: "#FFFFFE",
-    title: "VisitPlann",
-    tags: ["Mobile App", "Shipped", "Product Design"],
-    description:
-      "Guided tourism experience with computer vision: discover points of interest, access rich content, and plan routes. Full case study focused on shipping under constraints and building consistency.",
+    ...visitPlannCaseStudyCard,
+    img: visitPlannCaseStudyCard.img || caseStudyImages.visitPlann,
   },
   {
-    slug: "brancoprata",
-    hidden: true,
-    img: caseStudyImages.brancoPrataBase,
-    overlayImg: caseStudyImages.brancoPrataOverlay,
-    overlayClassName: "case-overlay-devices",
-    time: "3min read",
-    readTimeColor: "#060010",
-    title: "BrancoPrata",
-    tags: ["Website", "In Development"],
-    description:
-      "Marketing site for a Portuguese design studio, designed and built in Webflow to improve clarity, credibility, and lead generation.",
+    ...brancoPrataCaseStudyCard,
+    img: brancoPrataCaseStudyCard.img || caseStudyImages.brancoPrataBase,
+    overlayImg:
+      brancoPrataCaseStudyCard.overlayImg || caseStudyImages.brancoPrataOverlay,
+    overlayClassName:
+      brancoPrataCaseStudyCard.overlayClassName || "case-overlay-devices",
   },
   {
-    slug: "knight",
-    img: caseStudyImages.knight,
-    time: "4min read",
-    readTimeColor: "#FFFFFE",
-    title: "Knight",
-    tags: ["Mobile App", "In Production", "Product Design"],
-    description:
-      "Chess learning app focused on building skill through structured practice. Mini case study covering the current product direction and upcoming closed beta goals.",
+    ...knightCaseStudyCard,
+    img: knightCaseStudyCard.img || caseStudyImages.knight,
   },
 ];
+
+const caseStudies = caseStudyDefinitions.map((study) => ({
+  ...study,
+  time: getReadTimeLabel(study.readTimeSource ?? study.description),
+}));
 
 const visibleCaseStudies = caseStudies.filter((study) => !study.hidden);
 

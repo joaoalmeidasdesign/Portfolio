@@ -5,6 +5,7 @@ import { withBasePath } from "./pathUtils.js";
 const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
 const CV_HREF =
   "https://1drv.ms/b/c/902868921bb862fd/EUibngL2MWhBtZUnwByhWCQBVbMmWpby9EBiJsfv59ac-A?e=hD8nGa";
+const LINKEDIN_HREF = "https://www.linkedin.com/in/imjoaosilva/";
 
 function Footer({ navigate }) {
   const currentYear = new Date().getFullYear();
@@ -88,6 +89,20 @@ function Footer({ navigate }) {
                 rel="noreferrer"
               >
                 Get CV
+              </a>
+            </div>
+          </section>
+
+          <section className="site-footer-column" aria-label="Let's connect">
+            <h3 className="site-footer-label">Let&apos;s connect</h3>
+            <div className="site-footer-link-list">
+              <a
+                className="site-footer-meta-link"
+                href={LINKEDIN_HREF}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
               </a>
             </div>
           </section>

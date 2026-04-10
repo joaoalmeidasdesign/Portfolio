@@ -3,6 +3,9 @@ import Home from "./Home.jsx";
 import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
 import CaseStudyNotice from "./CaseStudyNotice.jsx";
+import VisitPlannCaseStudy from "./VisitPlannCaseStudy.jsx";
+import BrancoPrataCaseStudy from "./BrancoPrataCaseStudy.jsx";
+import KnightCaseStudy from "./KnightCaseStudy.jsx";
 import {
   getAppPathname,
   restoreRedirectPath,
@@ -33,6 +36,9 @@ function App() {
     return getAppPathname();
   });
   const isCaseStudyRoute = pathname.startsWith("/case-studies");
+  const caseStudySlug = isCaseStudyRoute
+    ? pathname.replace("/case-studies/", "").split("/")[0]
+    : "";
 
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.
@@ -64,6 +70,18 @@ function App() {
   };
 
   if (isCaseStudyRoute) {
+    if (caseStudySlug === "visitplann") {
+      return <VisitPlannCaseStudy navigate={navigate} />;
+    }
+
+    if (caseStudySlug === "brancoprata") {
+      return <BrancoPrataCaseStudy navigate={navigate} />;
+    }
+
+    if (caseStudySlug === "knight") {
+      return <KnightCaseStudy navigate={navigate} />;
+    }
+
     return <CaseStudyNotice navigate={navigate} />;
   }
 

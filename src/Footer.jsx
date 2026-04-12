@@ -9,6 +9,7 @@ const LINKEDIN_HREF = "https://www.linkedin.com/in/imjoaosilva/";
 
 function Footer({ navigate }) {
   const currentYear = new Date().getFullYear();
+  const workHref = `${withBasePath("/")}#work`;
 
   const handleNavigate = (event, nextPath, options) => {
     if (!navigate) return;
@@ -65,7 +66,7 @@ function Footer({ navigate }) {
             <div className="site-footer-link-list">
               <a
                 className="site-footer-meta-link"
-                href={`${withBasePath("/")}#work`}
+                href={workHref}
                 onClick={(event) =>
                   handleNavigate(event, "/", {
                     hash: "work",

@@ -1,8 +1,10 @@
 function resolveRuntimeBasePath() {
+  // In dev, Vite serves from the domain root.
   if (import.meta.env.DEV) {
     return "";
   }
 
+  // In production, infer the deployed base path from the built asset URL.
   const scriptUrl = new URL(import.meta.url);
   const assetMatch = scriptUrl.pathname.match(/^(.*)\/assets\/[^/]+$/);
 
@@ -49,6 +51,7 @@ export function restoreRedirectPath() {
     return;
   }
 
+  // 404.html stores the original route in `redirect` so the SPA can restore it.
   const redirectUrl = new URL(redirectedPath, window.location.origin);
   const nextPathname = withBasePath(redirectUrl.pathname);
   const nextUrl = `${nextPathname}${redirectUrl.search}${redirectUrl.hash}`;

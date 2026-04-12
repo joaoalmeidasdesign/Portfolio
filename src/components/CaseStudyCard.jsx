@@ -5,6 +5,7 @@ const DARK_TEXT_COLOR = "#060010";
 const LIGHT_TEXT_COLOR = "#FFFFFE";
 const BRIGHTNESS_THRESHOLD = 160;
 
+// Sample the top-right area of the artwork so the read-time badge stays legible.
 function sampleImageBrightness(imageSrc, onComplete) {
   const image = new Image();
   image.crossOrigin = "anonymous";
@@ -74,23 +75,33 @@ function sampleImageBrightness(imageSrc, onComplete) {
   image.src = imageSrc;
 }
 
-function CaseStudyCard(props) {
+function CaseStudyCard({
+  description,
+  href,
+  img,
+  overlayClassName,
+  overlayImg,
+  readTimeColor: preferredReadTimeColor,
+  tags,
+  time,
+  title,
+}) {
   const [readTimeColor, setReadTimeColor] = useState(LIGHT_TEXT_COLOR);
 
   useEffect(() => {
-    if (props.readTimeColor) {
-      setReadTimeColor(props.readTimeColor);
+    if (preferredReadTimeColor) {
+      setReadTimeColor(preferredReadTimeColor);
       return undefined;
     }
 
-    if (!props.img) {
+    if (!img) {
       setReadTimeColor(LIGHT_TEXT_COLOR);
       return;
     }
 
     let isActive = true;
 
-    sampleImageBrightness(props.img, (nextColor) => {
+    sampleImageBrightness(img, (nextColor) => {
       if (isActive) {
         setReadTimeColor(nextColor);
       }
@@ -99,27 +110,27 @@ function CaseStudyCard(props) {
     return () => {
       isActive = false;
     };
-  }, [props.img, props.readTimeColor]);
+  }, [img, preferredReadTimeColor]);
 
   return (
     // Reusable portfolio card with support for read-time, tags, and optional image overlays.
-    <a className="case case-link" href={props.href || "#"}>
+    <a className="case case-link" href={href || "#"}>
       <div className="case-header">
-        <img src={props.img} alt={props.title} crossOrigin="anonymous" />
-        {props.overlayImg ? (
+        <img src={img} alt={title} crossOrigin="anonymous" />
+        {overlayImg ? (
           <img
-            src={props.overlayImg}
+            src={overlayImg}
             alt=""
             aria-hidden="true"
-            className={`case-overlay ${props.overlayClassName || ""}`.trim()}
+            className={`case-overlay ${overlayClassName || ""}`.trim()}
           />
         ) : null}
         <p className="read-time" style={{ "--case-time-color": readTimeColor }}>
-          {props.time}
+          {time}
         </p>
-        {props.tags?.length ? (
+        {tags?.length ? (
           <div className="case-tags">
-            {props.tags.map((tag) => (
+            {tags.map((tag) => (
               <span className="case-tag" key={tag}>
                 {tag}
               </span>
@@ -128,8 +139,8 @@ function CaseStudyCard(props) {
         ) : null}
       </div>
       <div className="case-info">
-        <p className="case-title">{props.title}</p>
-        <p className="case-description">{props.description}</p>
+        <p className="case-title">{title}</p>
+        <p className="case-description">{description}</p>
       </div>
     </a>
   );

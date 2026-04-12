@@ -8,9 +8,9 @@ const CV_HREF =
 
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
-  const logoSrc = withBasePath("/jsdesign.svg");
   // Controls the fullscreen menu on tablet/mobile.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const logoSrc = withBasePath("/jsdesign.svg");
 
   // Shared navigation helper so desktop and mobile links behave the same way.
   const handleNavigate = (event, nextPath, options) => {
@@ -55,7 +55,7 @@ function Nav({ currentPath = "/", navigate }) {
   }, [currentPath]);
 
   useEffect(() => {
-    // Prevent page scrolling behind the fullscreen menu.
+    // Lock scroll behind the fullscreen menu, including touch scrolling on iOS.
     if (!isMenuOpen) return undefined;
 
     const previousBodyOverflow = document.body.style.overflow;

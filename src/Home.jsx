@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import Nav from "./Nav.jsx";
 import DesignSystem from "./components/System.jsx";
@@ -118,12 +118,19 @@ function Home({ navigate }) {
     return () => observer.disconnect();
   }, []);
 
+  const handleAboutNavigation = (event) => {
+    if (!navigate) {
+      window.location.href = withBasePath("/about");
+      return;
+    }
+
+    event.preventDefault();
+    navigate("/about");
+  };
+
   return (
     <>
-      {/* Shared top navigation. */}
-      <StrictMode>
-        <Nav currentPath="/" navigate={navigate} />
-      </StrictMode>
+      <Nav currentPath="/" navigate={navigate} />
 
       {/* Hero section. The dot-grid can bleed full-width while the text stays centered. */}
       <section className="hero" id="top">
@@ -170,14 +177,7 @@ function Home({ navigate }) {
                 // Secondary CTA sends the user to the About page.
                 className="hero-button hero-button-secondary"
                 href={withBasePath("/about")}
-                onClick={(event) => {
-                  if (!navigate) {
-                    window.location.href = withBasePath("/about");
-                    return;
-                  }
-                  event.preventDefault();
-                  navigate("/about");
-                }}
+                onClick={handleAboutNavigation}
               >
                 About Me
               </a>
@@ -198,21 +198,18 @@ function Home({ navigate }) {
             <img className="design-arrow design-arrow-top-left" src={arrow} alt="" />
             <img className="design-arrow design-arrow-bottom-center" src={arrowFlip} alt="" />
             <img className="design-arrow design-arrow-top-right" src={arrow} alt="" />
-            {processItems.map((item, index) => (
+            {processItems.map((item) => (
               <DesignSystem
                 key={item.title}
                 img={item.img}
                 title={item.title}
                 description={item.description}
-                // Kept available in case direction-based styling is reintroduced later.
-                arrowDirection={index % 2 === 0 ? "up" : "down"}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Selected work section. */}
       <section className="selected-work" id="work">
         <div className="caseStudy">
           <div className="case-column">
@@ -236,7 +233,7 @@ function Home({ navigate }) {
         </div>
       </section>
 
-      <Footer currentPath="/" navigate={navigate} />
+      <Footer navigate={navigate} />
     </>
   );
 }

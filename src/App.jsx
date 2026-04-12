@@ -12,8 +12,12 @@ import {
   withBasePath,
 } from "./pathUtils.js";
 
-// Minimal path-based router.
-// The project avoids an extra routing dependency and swaps pages by pathname.
+const caseStudyPages = {
+  visitplann: VisitPlannCaseStudy,
+  brancoprata: BrancoPrataCaseStudy,
+  knight: KnightCaseStudy,
+};
+
 // Scroll helper used after navigation when we want to land on a specific section.
 function scrollToHash(hash, behavior = "auto") {
   if (!hash) {
@@ -29,16 +33,20 @@ function scrollToHash(hash, behavior = "auto") {
   }
 }
 
+function getInitialPathname() {
+  // GitHub Pages can bounce deep links through 404.html before the SPA boots.
+  restoreRedirectPath();
+  return getAppPathname();
+}
+
 function App() {
-  // Tracks the current page shown by the app shell.
-  const [pathname, setPathname] = useState(() => {
-    restoreRedirectPath();
-    return getAppPathname();
-  });
+  // The app uses pathname switching instead of a dedicated router dependency.
+  const [pathname, setPathname] = useState(getInitialPathname);
   const isCaseStudyRoute = pathname.startsWith("/case-studies");
   const caseStudySlug = isCaseStudyRoute
     ? pathname.replace("/case-studies/", "").split("/")[0]
     : "";
+  const ActiveCaseStudyPage = caseStudyPages[caseStudySlug];
 
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.
@@ -70,16 +78,8 @@ function App() {
   };
 
   if (isCaseStudyRoute) {
-    if (caseStudySlug === "visitplann") {
-      return <VisitPlannCaseStudy navigate={navigate} />;
-    }
-
-    if (caseStudySlug === "brancoprata") {
-      return <BrancoPrataCaseStudy navigate={navigate} />;
-    }
-
-    if (caseStudySlug === "knight") {
-      return <KnightCaseStudy navigate={navigate} />;
+    if (ActiveCaseStudyPage) {
+      return <ActiveCaseStudyPage navigate={navigate} />;
     }
 
     return <CaseStudyNotice navigate={navigate} />;

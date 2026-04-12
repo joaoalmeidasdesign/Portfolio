@@ -40,11 +40,13 @@ function KnightCaseStudy({ navigate }) {
           <div className="case-study-content">
             {knightSections.map((section) => (
               <section className="case-study-section" key={section.title}>
-                <div className="case-study-section__column">
+                <div className="case-study-section__header">
                   <div className="case-study-section__intro">
                     <h2 className="case-study-section__title">{section.title}</h2>
                     <p className="case-study-section__subtitle">{section.subtitle}</p>
                   </div>
+                </div>
+                <div className="case-study-section__column">
                   <div className="case-study-section__body">
                     {section.blocks.map((block) => (
                       <div className="case-study-block" key={block.label || block.body[0]}>

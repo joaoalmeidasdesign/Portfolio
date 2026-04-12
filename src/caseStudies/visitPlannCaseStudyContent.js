@@ -52,7 +52,12 @@ export const visitPlannSections = [
           "I designed a selective offline model with two layers. A locked minimum downloads automatically and is always present, so the visit never fails silently. Beyond that, users can choose what to download before their visit: additional images, audio guides, video, and 3D models. This kept storage and licensing manageable while ensuring the core experience held.",
           "The offline model also required rethinking object recognition. The computer vision detection downloads as part of the locked minimum, but in testing it failed inconsistently enough that we could not rely on it as the sole access point. Rather than ship a feature that worked most of the time and failed silently the rest, I added a tap-to-identify fallback so users can manually select objects from a list to access the same information. It is slower and less elegant, but it guarantees access regardless of whether the CV model performs.",
         ],
-      },
+      }
+    ],
+  },
+  {
+    align: "left",
+    blocks: [
       {
         label: "The Tradeoff",
         body: [

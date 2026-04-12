@@ -50,6 +50,7 @@ const galleryItems = [
   { id: "gallery-4", src: carouselImageFour },
 ];
 
+// Duplicate the gallery once so the marquee can loop seamlessly.
 const carouselItems = [...galleryItems, ...galleryItems];
 
 function About({ navigate }) {
@@ -153,7 +154,7 @@ function About({ navigate }) {
           </div>
         </section>
       </main>
-      <Footer currentPath="/about" navigate={navigate} />
+      <Footer navigate={navigate} />
     </>
   );
 }

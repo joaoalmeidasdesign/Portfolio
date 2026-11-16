@@ -9,15 +9,18 @@ export const visitPlannSummary =
 export const visitPlannMeta = [
   {
     title: "My Role",
+    icon: "role",
     value: "Product Designer",
   },
   {
     title: "Delivery",
+    icon: "delivery",
     value:
       "Detection and information flow, search, favorites, routes, component library and design tokens, scoped route-navigation decisions.",
   },
   {
     title: "Team Context",
+    icon: "team",
     value:
       "No PM, shifting requirements week to week, dev-led decisions, inconsistent design patterns across the product.",
   },

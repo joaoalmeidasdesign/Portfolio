@@ -8,9 +8,10 @@ import routeExpansionImage from "./assets/Rotas.png";
 import offlineMockupImage from "./assets/Offline Mockup.png";
 import mapMockupImage from "./assets/Map Mockup.png";
 import widgetImage from "./assets/Widget.png";
-import metaDeliveryIcon from "./assets/meta-delivery-icon.svg";
-import metaTeamIcon from "./assets/meta-team-icon.svg";
-import metaRoleIcon from "./assets/meta-role-icon.svg";
+import {
+  CaseStudyBlock,
+  CaseStudyMetaGrid,
+} from "./components/CaseStudyParts.jsx";
 import {
   visitPlannHeroImage,
   visitPlannMeta,
@@ -25,30 +26,6 @@ const visitPlannMapDensityImage = mapDensityImage;
 const visitPlannRouteExpansionImage = routeExpansionImage;
 const visitPlannDesignSystemPreviewImage = widgetImage;
 const visitPlannDesignSystemSystemImage = figmaDocImage;
-
-function CaseStudyMetaIcon({ kind }) {
-  const iconSrc =
-    kind === "delivery"
-      ? metaDeliveryIcon
-      : kind === "team"
-        ? metaTeamIcon
-        : metaRoleIcon;
-
-  return <img aria-hidden="true" className="case-study-meta-card__icon-svg" src={iconSrc} alt="" />;
-}
-
-function CaseStudyBlock({ label, body }) {
-  return (
-    <div className="case-study-block">
-      {label ? <h3 className="case-study-block__label">{label}</h3> : null}
-      {body.map((paragraph) => (
-        <p className="case-study-block__copy" key={paragraph}>
-          {paragraph}
-        </p>
-      ))}
-    </div>
-  );
-}
 
 function VisitPlannCaseStudy({ navigate }) {
   const [
@@ -97,27 +74,7 @@ function VisitPlannCaseStudy({ navigate }) {
             </div>
           </header>
 
-          <section className="case-study-meta-grid" aria-label="Case study overview">
-            {visitPlannMeta.map((item) => (
-              <article className="case-study-meta-card" key={item.title}>
-                <div className="case-study-meta-card__heading">
-                  <span className="case-study-meta-card__icon">
-                    <CaseStudyMetaIcon
-                      kind={
-                        item.title === "Delivery"
-                          ? "delivery"
-                          : item.title === "Team Context"
-                            ? "team"
-                            : "role"
-                      }
-                    />
-                  </span>
-                  <h2 className="case-study-meta-card__title">{item.title}</h2>
-                </div>
-                <p className="case-study-meta-card__value">{item.value}</p>
-              </article>
-            ))}
-          </section>
+          <CaseStudyMetaGrid items={visitPlannMeta} />
 
           <div className="case-study-content">
             <section className="case-study-split-section">

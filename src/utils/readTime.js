@@ -27,7 +27,12 @@ export function getReadTimeLabel(text, options = {}) {
   return `${minutes} min read`;
 }
 
-export function getCaseStudyText({ summary = "", meta = [], sections = [] } = {}) {
+export function getCaseStudyText({
+  summary = "",
+  meta = [],
+  sections = [],
+  includeSectionHeadings = true,
+} = {}) {
   const metaText = meta
     .flatMap((item) => [item.title, item.value])
     .filter(Boolean)
@@ -35,8 +40,7 @@ export function getCaseStudyText({ summary = "", meta = [], sections = [] } = {}
 
   const sectionText = sections
     .flatMap((section) => [
-      section.title,
-      section.subtitle,
+      ...(includeSectionHeadings ? [section.title, section.subtitle] : []),
       ...(section.blocks || []).flatMap((block) => [
         block.label,
         ...(block.body || []),

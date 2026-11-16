@@ -1,9 +1,10 @@
 import Nav from "./Nav.jsx";
 import Footer from "./Footer.jsx";
 import "./CaseStudyPage.css";
-import metaDeliveryIcon from "./assets/meta-delivery-icon.svg";
-import metaTeamIcon from "./assets/meta-team-icon.svg";
-import metaRoleIcon from "./assets/meta-role-icon.svg";
+import {
+  CaseStudyBlock,
+  CaseStudyMetaGrid,
+} from "./components/CaseStudyParts.jsx";
 import {
   knightBetaNote,
   knightHeroImage,
@@ -12,49 +13,47 @@ import {
   knightSummary,
 } from "./caseStudies/knightCaseStudyContent.js";
 
-function CaseStudyMetaIcon({ kind }) {
-  const iconSrc =
-    kind === "delivery"
-      ? metaDeliveryIcon
-      : kind === "team"
-        ? metaTeamIcon
-        : metaRoleIcon;
+// Each section renders its unlabeled blocks as a full-width lead, followed by
+// its labeled blocks in the two-column grid. Section titles and subtitles are
+// intentionally not displayed in this layout.
+function KnightSection({ section }) {
+  const blocks = section.blocks ?? [];
+  const leadBlocks = blocks.filter((block) => !block.label);
+  const columnBlocks = blocks.filter((block) => block.label);
+  const hasLead = leadBlocks.length > 0;
 
   return (
-    <img
-      aria-hidden="true"
-      className="case-study-meta-card__icon-svg"
-      src={iconSrc}
-      alt=""
-    />
-  );
-}
+    <section
+      className={hasLead ? "case-study-knight-intro" : "case-study-split-section"}
+    >
+      {hasLead ? (
+        <div className="case-study-knight-intro__lead">
+          {leadBlocks.flatMap((block) =>
+            (block.body ?? []).map((paragraph) => (
+              <p className="case-study-block__copy" key={paragraph}>
+                {paragraph}
+              </p>
+            ))
+          )}
+        </div>
+      ) : null}
 
-function CaseStudyBlock({ label, body }) {
-  return (
-    <div className="case-study-block">
-      {label ? <h3 className="case-study-block__label">{label}</h3> : null}
-      {body.map((paragraph) => (
-        <p className="case-study-block__copy" key={paragraph}>
-          {paragraph}
-        </p>
-      ))}
-    </div>
+      {columnBlocks.length > 0 ? (
+        <div className="case-study-split-section__columns case-study-split-section__columns--compact">
+          {columnBlocks.map((block) => (
+            <div className="case-study-split-section__column" key={block.label}>
+              <div className="case-study-section__body">
+                <CaseStudyBlock label={block.label} body={block.body} />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </section>
   );
-}
-
-function HiddenKnightMediaRow({ leftCaption, rightCaption, rowLabel }) {
-  void leftCaption;
-  void rightCaption;
-  void rowLabel;
-  return null;
 }
 
 function KnightCaseStudy({ navigate }) {
-  const [planningSection, systemSection] = knightSections;
-  const [introBlock, optionsBlock, decisionBlock] = planningSection.blocks;
-  const [systemDecisionBlock, systemTradeoffBlock] = systemSection.blocks;
-
   return (
     <>
       <Nav currentPath="/" navigate={navigate} />
@@ -73,85 +72,12 @@ function KnightCaseStudy({ navigate }) {
             </div>
           </header>
 
-          <section className="case-study-meta-grid" aria-label="Case study overview">
-            {knightMeta.map((item) => (
-              <article className="case-study-meta-card" key={item.title}>
-                <div className="case-study-meta-card__heading">
-                  <span className="case-study-meta-card__icon">
-                    <CaseStudyMetaIcon
-                      kind={
-                        item.title === "Delivery"
-                          ? "delivery"
-                          : item.title === "Team Context"
-                            ? "team"
-                            : "role"
-                      }
-                    />
-                  </span>
-                  <h2 className="case-study-meta-card__title">{item.title}</h2>
-                </div>
-                <p className="case-study-meta-card__value">{item.value}</p>
-              </article>
-            ))}
-          </section>
+          <CaseStudyMetaGrid items={knightMeta} />
 
           <div className="case-study-content">
-            <section className="case-study-knight-intro">
-              <div className="case-study-knight-intro__lead">
-                <p className="case-study-block__copy">{introBlock.body[0]}</p>
-              </div>
-              <div className="case-study-split-section__columns case-study-split-section__columns--compact">
-                <div className="case-study-split-section__column">
-                  <div className="case-study-section__body">
-                    <CaseStudyBlock
-                      label={optionsBlock.label}
-                      body={optionsBlock.body}
-                    />
-                  </div>
-                </div>
-                <div className="case-study-split-section__column">
-                  <div className="case-study-section__body">
-                    <CaseStudyBlock
-                      label={decisionBlock.label}
-                      body={decisionBlock.body}
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <HiddenKnightMediaRow
-              rowLabel="Knight Planning Mockups"
-              leftCaption="Planned planning-flow mockup caption."
-              rightCaption="Planned supporting mockup caption."
-            />
-
-            <section className="case-study-split-section">
-              <div className="case-study-split-section__columns case-study-split-section__columns--compact">
-                <div className="case-study-split-section__column">
-                  <div className="case-study-section__body">
-                    <CaseStudyBlock
-                      label={systemDecisionBlock.label}
-                      body={systemDecisionBlock.body}
-                    />
-                  </div>
-                </div>
-                <div className="case-study-split-section__column">
-                  <div className="case-study-section__body">
-                    <CaseStudyBlock
-                      label={systemTradeoffBlock.label}
-                      body={systemTradeoffBlock.body}
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <HiddenKnightMediaRow
-              rowLabel="Knight System Mockups"
-              leftCaption="Planned resource-system mockup caption."
-              rightCaption="Planned tracker mockup caption."
-            />
+            {knightSections.map((section) => (
+              <KnightSection section={section} key={section.title} />
+            ))}
           </div>
         </article>
       </main>

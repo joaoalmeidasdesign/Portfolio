@@ -9,17 +9,20 @@ export const knightBetaNote = "Closed beta planned Q2/Q3 2026";
 export const knightMeta = [
   {
     title: "My Role",
+    icon: "role",
     value: "Product Designer — sole designer on a small team",
   },
   {
     title: "Delivery",
+    icon: "delivery",
     value:
       "Training planning flow; weekly goal-setting system; resources library connected to training tracker; design system foundations",
   },
   {
     title: "Team Context",
+    icon: "team",
     value:
-      "Small team, low budget;",
+      "Small team, low budget",
   },
 ];
 
@@ -81,5 +84,6 @@ export const knightCaseStudyCard = {
     summary: knightSummary,
     meta: knightMeta,
     sections: knightSections,
+    includeSectionHeadings: false,
   }),
 };

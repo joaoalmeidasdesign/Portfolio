@@ -293,30 +293,6 @@
   height: 40rem;
 }
 
-.case-study-media-grid__placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 41rem;
-  border: 1px dashed rgba(224, 220, 255, 0.25);
-  border-radius: 0.875rem;
-  background:
-    linear-gradient(135deg, rgba(127, 90, 240, 0.16), rgba(14, 7, 28, 0.32)),
-    rgba(10, 4, 20, 0.7);
-}
-
-.case-study-media-grid__placeholder--narrow {
-  min-height: 41rem;
-}
-
-.case-study-media-grid__placeholder-label {
-  color: rgba(224, 220, 255, 0.72);
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
 .case-study-media-grid__frame--right {
   justify-content: center;
 }

@@ -1,7 +1,7 @@
+import visitPlannCover from "../assets/Visitplann_Cover.png";
 import { getCaseStudyText } from "../utils/readTime.js";
 
-export const visitPlannHeroImage =
-  "https://www.figma.com/api/mcp/asset/3c2ba1ac-7fc4-4574-a1b8-d37e790f706e";
+export const visitPlannHeroImage = visitPlannCover;
 
 export const visitPlannSummary =
   "Most tourism apps are designed for people standing on a street corner with full signal. VisitPlann is used inside centuries-old stone walls, where there’s almost none.";

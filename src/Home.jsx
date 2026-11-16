@@ -11,7 +11,7 @@ import searchDiscovery from "./assets/Search & Discovery.png";
 import strategyPlanning from "./assets/Strategy & Planning.png";
 import designPrototype from "./assets/Design & Prototype.png";
 import collaborateIterate from "./assets/Collaborate & iterate.png";
-import visitPlannCover from "./assets/visitplann-cover.png";
+import visitPlannCover from "./assets/Visitplann_Cover.png";
 import brancoPrataBase from "./assets/brancoprata-base.svg";
 import brancoPrataOverlay from "./assets/brancoprata-overlay.svg";
 import knightCover from "./assets/knight-cover.png";

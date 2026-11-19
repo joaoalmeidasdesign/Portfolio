@@ -696,6 +696,10 @@
   fill: var(--color-accent);
 }
 
+.loop-diagram__head {
+  stroke-linejoin: round;
+}
+
 .loop-diagram__circle--light {
   fill: var(--color-accent-light);
 }

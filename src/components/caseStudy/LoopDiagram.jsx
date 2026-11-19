@@ -11,8 +11,12 @@ const steps = [
   { n: 5, label: "Adjust", cx: 104.05, cy: 207.83, lx: 34.17, ly: 188, light: true },
 ];
 
+const HEAD = 9;
+
 // Straight arrow from one circle edge to the next, leaving a small gap.
-function arrowPath(from, to) {
+// Returns the line and a separate chevron head (so the head can appear
+// after the line has drawn in).
+function arrow(from, to) {
   const dx = to.cx - from.cx;
   const dy = to.cy - from.cy;
   const length = Math.hypot(dx, dy);
@@ -23,8 +27,19 @@ function arrowPath(from, to) {
   const y1 = from.cy + uy * offset;
   const x2 = to.cx - ux * offset;
   const y2 = to.cy - uy * offset;
-  return `M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}`;
+  // Perpendicular for the chevron wings.
+  const nx = -uy;
+  const ny = ux;
+  const bx = x2 - ux * HEAD;
+  const by = y2 - uy * HEAD;
+  const f = (n) => n.toFixed(1);
+  return {
+    line: `M${f(x1)} ${f(y1)} L${f(x2)} ${f(y2)}`,
+    head: `M${f(bx + nx * HEAD * 0.7)} ${f(by + ny * HEAD * 0.7)} L${f(x2)} ${f(y2)} L${f(bx - nx * HEAD * 0.7)} ${f(by - ny * HEAD * 0.7)}`,
+  };
 }
+
+const arrows = steps.map((step, index) => arrow(step, steps[(index + 1) % steps.length]));
 
 function LoopDiagram() {
   return (
@@ -37,33 +52,15 @@ function LoopDiagram() {
       <title id="loop-diagram-title">
         The weekly loop: 1 Plan, 2 Practice, 3 Record, 4 Reflect, 5 Adjust, then back to Plan.
       </title>
-      <defs>
-        <marker
-          id="loop-arrowhead"
-          viewBox="0 0 10 10"
-          refX="8"
-          refY="5"
-          markerWidth="7"
-          markerHeight="7"
-          orient="auto-start-reverse"
-        >
-          <path d="M0 0 L10 5 L0 10" fill="none" stroke="var(--color-accent)" strokeWidth="1.6" />
-        </marker>
-      </defs>
-
       <g className="loop-diagram__arrows">
-        {steps.map((step, index) => {
-          const next = steps[(index + 1) % steps.length];
-          return (
-            <path
-              key={step.n}
-              className="loop-diagram__arrow"
-              d={arrowPath(step, next)}
-              pathLength="1"
-              markerEnd="url(#loop-arrowhead)"
-            />
-          );
-        })}
+        {arrows.map((a) => (
+          <path key={a.line} className="loop-diagram__arrow" d={a.line} pathLength="1" />
+        ))}
+      </g>
+      <g className="loop-diagram__heads">
+        {arrows.map((a) => (
+          <path key={a.head} className="loop-diagram__arrow loop-diagram__head" d={a.head} />
+        ))}
       </g>
 
       <text className="loop-diagram__center" x="280" y="270" textAnchor="middle">

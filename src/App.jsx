@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { setupPageMotion } from "./motion.js";
 import Home from "./Home.jsx";
 import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
@@ -49,6 +50,9 @@ function App() {
     ? pathname.replace("/case-studies/", "").split("/")[0]
     : "";
   const ActiveCaseStudyPage = caseStudyPages[caseStudySlug];
+
+  // Hero entrance and scroll reveals for whichever page is showing.
+  useEffect(() => setupPageMotion(document.getElementById("root")), [pathname]);
 
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.

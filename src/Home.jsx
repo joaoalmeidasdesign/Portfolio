@@ -195,11 +195,12 @@ function Home({ navigate }) {
 
       <section className="selected-work" id="work" aria-labelledby="work-title">
         <SectionHeader
+          reveal
           className="selected-work__header"
           title="Selected work"
           id="work-title"
         />
-        <div className="selected-work__grid">
+        <div className="selected-work__grid" data-reveal-stagger>
           <div className="selected-work__column">
             {renderCard(knightProject, "selected-work__card--knight")}
             {renderCard(aiSavingsProject, "selected-work__card--ai")}

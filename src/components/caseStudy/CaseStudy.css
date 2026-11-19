@@ -697,6 +697,7 @@
 }
 
 .loop-diagram__head {
+  fill: var(--color-accent);
   stroke-linejoin: round;
 }
 

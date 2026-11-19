@@ -4,14 +4,14 @@ const RADIUS = 48;
 const GAP = 12;
 
 const steps = [
-  { n: 1, label: "Plan", cx: 280, cy: 80, lx: 280, ly: -14 },
-  { n: 2, label: "Practice", cx: 455.95, cy: 207.83, lx: 513.83, ly: 188 },
+  { n: 1, label: "Plan", cx: 280, cy: 80, lx: 280, ly: 6 },
+  { n: 2, label: "Practice", cx: 455.95, cy: 207.83, lx: 513.83, ly: 154 },
   { n: 3, label: "Record", cx: 388.74, cy: 414.67, lx: 438.11, ly: 503 },
   { n: 4, label: "Reflect", cx: 171.26, cy: 414.67, lx: 121.89, ly: 503 },
-  { n: 5, label: "Adjust", cx: 104.05, cy: 207.83, lx: 34.17, ly: 188, light: true },
+  { n: 5, label: "Adjust", cx: 104.05, cy: 207.83, lx: 34.17, ly: 154, light: true },
 ];
 
-const HEAD = 9;
+const HEAD = 11;
 
 // Straight arrow from one circle edge to the next, leaving a small gap.
 // Returns the line and a separate chevron head (so the head can appear
@@ -34,8 +34,8 @@ function arrow(from, to) {
   const by = y2 - uy * HEAD;
   const f = (n) => n.toFixed(1);
   return {
-    line: `M${f(x1)} ${f(y1)} L${f(x2)} ${f(y2)}`,
-    head: `M${f(bx + nx * HEAD * 0.7)} ${f(by + ny * HEAD * 0.7)} L${f(x2)} ${f(y2)} L${f(bx - nx * HEAD * 0.7)} ${f(by - ny * HEAD * 0.7)}`,
+    line: `M${f(x1)} ${f(y1)} L${f(bx)} ${f(by)}`,
+    head: `M${f(bx + nx * HEAD * 0.55)} ${f(by + ny * HEAD * 0.55)} L${f(x2)} ${f(y2)} L${f(bx - nx * HEAD * 0.55)} ${f(by - ny * HEAD * 0.55)} Z`,
   };
 }
 
@@ -45,7 +45,7 @@ function LoopDiagram() {
   return (
     <svg
       className="loop-diagram"
-      viewBox="-40 -44 640 584"
+      viewBox="-40 -24 640 564"
       role="img"
       aria-labelledby="loop-diagram-title"
     >

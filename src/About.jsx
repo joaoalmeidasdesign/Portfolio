@@ -1,160 +1,147 @@
 import Nav from "./Nav.jsx";
 import Footer from "./Footer.jsx";
 import "./About.css";
-import aboutHeroPhoto from "./assets/about-hero-photo.jpg";
-import carouselImageOne from "./assets/carrousel 1.jpg";
-import carouselImageTwo from "./assets/Carrousel 2.jpg";
-import carouselImageThree from "./assets/Carrousel 3.jpg";
-import carouselImageFour from "./assets/carrousel 4.jpg";
-import strengthClarityIcon from "./assets/about-strength-clarity.svg";
-import strengthSystemIcon from "./assets/about-strength-system.svg";
-import strengthEngineersIcon from "./assets/about-strength-engineers.svg";
-import strengthQualityIcon from "./assets/about-strength-quality.svg";
+import portrait from "./assets/about/portrait.png";
+import photoMotorcycle from "./assets/about/photo-1.png";
+import photoConcert from "./assets/about/photo-2.png";
+import photoNightSky from "./assets/about/photo-3.png";
+import photoRugby from "./assets/about/photo-4.png";
 
+// Copy is verbatim from Figma (About, 688:338).
 const strengths = [
   {
-    icon: strengthClarityIcon,
-    title: "Clarity first",
-    description: "I turn complex requirements into clear flows and priorities.",
+    label: "01 · Clarity first",
+    text: "I turn complex requirements into clear flows and priorities.",
   },
   {
-    icon: strengthSystemIcon,
-    title: "System thinking",
-    description: "I reuse patterns and components to keep products consistent.",
+    label: "02 · System thinking",
+    text: "I reuse patterns and components to keep products consistent.",
   },
   {
-    icon: strengthEngineersIcon,
-    title: "Build with engineers",
-    description:
-      "I design with constraints in mind and iterate during implementation.",
+    label: "03 · Build with engineers",
+    text: "I design with constraints in mind and iterate during implementation.",
   },
   {
-    icon: strengthQualityIcon,
-    title: "Quality & detail",
-    description:
-      "I care about hierarchy, spacing, and states that make products feel solid.",
+    label: "04 · Quality & detail",
+    text: "I care about hierarchy, spacing, and states that make products feel solid.",
   },
 ];
 
-const beyondTheScreenItems = [
+const beyondTheScreen = [
   "Capturing the night sky through astrophotography",
   "Developing film in my makeshift darkroom",
   "Doing some kind of sport",
   "Riding my motorcycle through mountain roads",
 ];
 
-const galleryItems = [
-  { id: "gallery-1", src: carouselImageOne },
-  { id: "gallery-2", src: carouselImageTwo },
-  { id: "gallery-3", src: carouselImageThree },
-  { id: "gallery-4", src: carouselImageFour },
+const photos = [
+  {
+    src: photoMotorcycle,
+    alt: "A rider in black gear beside a motorcycle under a large tree on a cloudy day.",
+  },
+  {
+    src: photoConcert,
+    alt: "A crowd at a concert, silhouetted against bright blue stage lights.",
+  },
+  {
+    src: photoNightSky,
+    alt: "A person standing on a rock outcrop under the Milky Way at night.",
+  },
+  {
+    src: photoRugby,
+    alt: "Rugby players in green jerseys contesting a ruck on a grass pitch.",
+  },
 ];
-
-// Duplicate the gallery once so the marquee can loop seamlessly.
-const carouselItems = [...galleryItems, ...galleryItems];
 
 function About({ navigate }) {
   return (
     <>
       <Nav currentPath="/about" navigate={navigate} />
-      <main className="about-page">
-        <section className="about-intro">
-          <div className="about-photo-frame">
-            <img
-              className="about-photo"
-              src={aboutHeroPhoto}
-              alt="Joao Silva sitting outdoors"
-            />
-          </div>
-
-          <div className="about-copy">
-            <h1 className="about-title">
-              <span className="about-title-accent">About me, </span>
-              <span className="about-title-muted">
-                my story and my experience
-              </span>
-            </h1>
-
-            <p className="about-lead">
-              I&apos;m João Silva, a Product Designer based in Portugal. With a
-              computer science foundation, I design and ship mobile and web
-              products, turning complex requirements into clear flows,
-              high-quality UI, and scalable design systems with engineers.
+      <main className="about">
+        <section className="about-hero" aria-labelledby="about-title">
+          <img
+            className="about-hero__portrait"
+            src={portrait}
+            alt="João smiling at a café table on a terrace in a historic Portuguese town."
+            width="1120"
+            height="1280"
+            fetchPriority="high"
+          />
+          <div className="about-hero__text">
+            <p className="eyebrow" data-hero-item>
+              About
             </p>
+            <h1 className="about-hero__title" id="about-title" data-hero-item>
+              <span className="about-hero__accent">About me,</span> my story and
+              my experience
+            </h1>
+            <p className="about-hero__intro" data-hero-item>
+              I’m João Silva, a product designer based in Portugal who works
+              close to the code. For four years I’ve designed consumer and B2B
+              mobile products, from offline-first field apps to habit loops,
+              with handoff that engineers build from directly: tokenized design
+              systems and full prototypes. I studied computer science before I
+              moved into design.
+            </p>
+          </div>
+        </section>
 
-            <div className="about-story-grid">
-              <article className="about-story-block">
-                <h2 className="about-story-title">How I got here</h2>
-                <p className="about-story-body">
-                  I studied Computer Science for two years before moving into
-                  design because I cared more about how products feel and behave
-                  for users. The technical foundation wasn&apos;t wasted: it helps
-                  me reason about feasibility, communicate tradeoffs with
-                  engineering, and design systems that stay consistent as
-                  products evolve.
-                </p>
-              </article>
-
-              <article className="about-story-block">
-                <h2 className="about-story-title">Beyond the Screen</h2>
-                <p className="about-story-body about-story-body-intro">
-                  When I&apos;m not designing, you&apos;ll find me:
-                </p>
-                <ul className="about-list">
-                  {beyondTheScreenItems.map((item) => (
-                    <li className="about-list-item" key={item}>
-                      {item}
-                    </li>
+        <section className="about-story" aria-label="Background">
+          <div className="about-story__row" data-reveal>
+            <div className="about-story__column">
+              <h2 className="about-story__title">How I got here</h2>
+              <p className="about-story__copy">
+                I studied Computer Science for two years before moving into
+                design—because I cared more about how products feel and behave
+                for users. The technical foundation wasn’t wasted: it helps me
+                reason about feasibility, communicate tradeoffs with
+                engineering, and design systems that stay consistent as products
+                evolve.
+              </p>
+            </div>
+            <div className="about-story__column">
+              <h2 className="about-story__title">Beyond the Screen</h2>
+              <div className="about-story__copy">
+                <p>When I’m not designing, you’ll find me:</p>
+                <ul className="about-story__list">
+                  {beyondTheScreen.map((item) => (
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
-              </article>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="about-strengths">
-          <div className="about-strengths-heading">
-            <h2 className="about-strengths-title">My strengths</h2>
-          </div>
-
-          <div className="about-strengths-grid">
-            {strengths.map((strength) => (
-              <article className="about-strength-card" key={strength.title}>
-                <div className="about-strength-header">
-                  <span className="about-strength-icon-wrap" aria-hidden="true">
-                    <img
-                      className="about-strength-icon"
-                      src={strength.icon}
-                      alt=""
-                    />
-                  </span>
-                  <h3 className="about-strength-title">{strength.title}</h3>
-                </div>
-                <p className="about-strength-copy">{strength.description}</p>
-              </article>
+        <section className="about-strengths" aria-labelledby="strengths-title">
+          <h2 className="section-title" id="strengths-title" data-reveal>
+            My strengths
+          </h2>
+          <ul className="about-strengths__grid" data-reveal-stagger>
+            {strengths.map((item) => (
+              <li className="about-strengths__card" key={item.label}>
+                <h3 className="about-strengths__label">{item.label}</h3>
+                <p className="about-strengths__text">{item.text}</p>
+              </li>
             ))}
-          </div>
-        </section>
-
-        <section className="about-gallery" aria-label="About page photography">
-          <div className="about-gallery-track">
-            {carouselItems.map((item, index) => (
-              <div
-                className="about-gallery-item"
-                key={`${item.id}-${index + 1}`}
-              >
+          </ul>
+          <ul className="about-photos" data-reveal-stagger>
+            {photos.map((photo) => (
+              <li key={photo.src}>
                 <img
-                  className="about-gallery-image"
-                  src={item.src}
-                  alt=""
-                  aria-hidden="true"
+                  src={photo.src}
+                  alt={photo.alt}
+                  width="616"
+                  height="840"
+                  loading="lazy"
+                  decoding="async"
                 />
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       </main>
-      <Footer navigate={navigate} />
+      <Footer />
     </>
   );
 }

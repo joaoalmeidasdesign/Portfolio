@@ -3,8 +3,6 @@ import { withBasePath } from "./pathUtils.js";
 // Single source for external links used by the nav, contact band and footer.
 export const LINKEDIN_HREF = "https://www.linkedin.com/in/imjoaosilva/";
 
-// TODO(confirm with João): email carried over from the live site
-// until the final value is confirmed.
 export const CONTACT_EMAIL = "joaoalmeidas.design@gmail.com";
 export const CONTACT_HREF = `mailto:${CONTACT_EMAIL}`;
 

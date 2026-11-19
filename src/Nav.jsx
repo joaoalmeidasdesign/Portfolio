@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./Nav.css";
 import { withBasePath } from "./pathUtils.js";
 import { CV_HREF } from "./siteLinks.js";
+import logoSrc from "./assets/logo.svg";
 
 // Nav link (Figma 710:340). The current page gets the hover style + aria-current.
 function NavLink({ current = false, highlight = false, className, children, ...rest }) {
@@ -19,7 +20,6 @@ function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
   // Controls the fullscreen menu on tablet/mobile.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const logoSrc = withBasePath("/jsdesign.svg");
 
   // Shared navigation helper so desktop and mobile links behave the same way.
   const handleNavigate = (event, nextPath, options) => {

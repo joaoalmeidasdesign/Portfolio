@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import Nav from "./Nav.jsx";
 import DesignSystem from "./components/System.jsx";
-import CaseStudyCard from "./components/CaseStudyCard.jsx";
+import Button from "./components/Button.jsx";
+import ProjectCard from "./components/ProjectCard.jsx";
+import SectionHeader from "./components/SectionHeader.jsx";
 import DotGrid from "./DotGrid.jsx";
 import Footer from "./Footer.jsx";
 import arrow from "./assets/arrow.png";
@@ -11,15 +13,12 @@ import searchDiscovery from "./assets/Search & Discovery.png";
 import strategyPlanning from "./assets/Strategy & Planning.png";
 import designPrototype from "./assets/Design & Prototype.png";
 import collaborateIterate from "./assets/Collaborate & iterate.png";
-import visitPlannCover from "./assets/Visitplann_Cover.png";
-import brancoPrataBase from "./assets/brancoprata-base.svg";
-import brancoPrataOverlay from "./assets/brancoprata-overlay.svg";
-import knightCover from "./assets/knight-cover.png";
 import { withBasePath } from "./pathUtils.js";
-import { getReadTimeLabel } from "./utils/readTime.js";
-import { visitPlannCaseStudyCard } from "./caseStudies/visitPlannCaseStudyContent.js";
-import { brancoPrataCaseStudyCard } from "./caseStudies/brancoPrataCaseStudyContent.js";
-import { knightCaseStudyCard } from "./caseStudies/knightCaseStudyContent.js";
+import {
+  aiSavingsProject,
+  knightProject,
+  visitPlannProject,
+} from "./caseStudies/projectCards.js";
 
 // Local icons used in the design-process section.
 const processIcons = {
@@ -29,20 +28,12 @@ const processIcons = {
   execution: collaborateIterate,
 };
 
-// Local case-study imagery. The original Figma MCP asset links are no longer available.
-const caseStudyImages = {
-  visitPlann: visitPlannCover,
-  brancoPrataBase,
-  brancoPrataOverlay,
-  knight: knightCover,
-};
-
 // Content model for the process cards.
 const processItems = [
   {
     img: processIcons.shipped,
     title: "Shipped product work",
-    description: "Design work that reaches production, not just prototypes.",
+    description: "Design work that reaches production—not just prototypes.",
   },
   {
     img: processIcons.flow,
@@ -62,33 +53,6 @@ const processItems = [
       "Fast cycles, clear tradeoffs, and tight collaboration with engineering.",
   },
 ];
-
-// Content model for the selected work cards.
-const caseStudyDefinitions = [
-  {
-    ...visitPlannCaseStudyCard,
-    img: visitPlannCaseStudyCard.img || caseStudyImages.visitPlann,
-  },
-  {
-    ...brancoPrataCaseStudyCard,
-    img: brancoPrataCaseStudyCard.img || caseStudyImages.brancoPrataBase,
-    overlayImg:
-      brancoPrataCaseStudyCard.overlayImg || caseStudyImages.brancoPrataOverlay,
-    overlayClassName:
-      brancoPrataCaseStudyCard.overlayClassName || "case-overlay-devices",
-  },
-  {
-    ...knightCaseStudyCard,
-    img: knightCaseStudyCard.img || caseStudyImages.knight,
-  },
-];
-
-const caseStudies = caseStudyDefinitions.map((study) => ({
-  ...study,
-  time: getReadTimeLabel(study.readTimeSource ?? study.description),
-}));
-
-const visibleCaseStudies = caseStudies.filter((study) => !study.hidden);
 
 // Main landing page of the portfolio.
 function Home({ navigate }) {
@@ -118,15 +82,31 @@ function Home({ navigate }) {
     return () => observer.disconnect();
   }, []);
 
-  const handleAboutNavigation = (event) => {
-    if (!navigate) {
-      window.location.href = withBasePath("/about");
-      return;
-    }
-
+  // Smooth-scroll to an on-page section, respecting reduced motion.
+  const scrollToSection = (event, id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
     event.preventDefault();
-    navigate("/about");
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
   };
+
+  const openCaseStudy = (event, slug) => {
+    if (!navigate) return;
+    event.preventDefault();
+    navigate(`/case-studies/${slug}`);
+  };
+
+  const renderCard = (project, className) => (
+    <ProjectCard
+      project={project}
+      className={className}
+      href={withBasePath(`/case-studies/${project.slug}`)}
+      onClick={(event) => openCaseStudy(event, project.slug)}
+    />
+  );
 
   return (
     <>
@@ -149,16 +129,16 @@ function Home({ navigate }) {
         </div>
         <div className="hero-inner">
           <div className="hero-content">
-            <div className="hero-greeting">Joao Silva</div>
-            <div className="hero-title">Product Designer</div>
-            <div className="hero-subtitle">
+            <p className="hero-greeting" data-hero-item>João Silva</p>
+            <h1 className="hero-title" data-hero-item>Product Designer</h1>
+            <p className="hero-subtitle" data-hero-item>
               With a computer science foundation
-            </div>
+            </p>
           </div>
           <div className="hero-details">
-            <div className="hero-copy-block">
+            <div className="hero-copy-block" data-hero-item>
               <p className="hero-description">
-                I design and ship mobile and web products, turning complex
+                I design and ship mobile and web products—turning complex
                 requirements into clear flows, high-quality UI, and scalable
                 design systems with engineers.
               </p>
@@ -169,18 +149,21 @@ function Home({ navigate }) {
                 </span>
               </div>
             </div>
-            <div className="hero-actions">
-              <a className="hero-button hero-button-primary" href="#work">
-                View Work
-              </a>
-              <a
-                // Secondary CTA sends the user to the About page.
-                className="hero-button hero-button-secondary"
-                href={withBasePath("/about")}
-                onClick={handleAboutNavigation}
+            <div className="hero-actions" data-hero-item>
+              <Button
+                href="#work"
+                variant="primary"
+                onClick={(event) => scrollToSection(event, "work")}
               >
-                About Me
-              </a>
+                View Work
+              </Button>
+              <Button
+                href="#contact"
+                variant="secondary"
+                onClick={(event) => scrollToSection(event, "contact")}
+              >
+                Contact
+              </Button>
             </div>
           </div>
         </div>
@@ -210,30 +193,24 @@ function Home({ navigate }) {
         </div>
       </section>
 
-      <section className="selected-work" id="work">
-        <div className="caseStudy">
-          <div className="case-column">
-            {visibleCaseStudies.slice(0, 1).map((study) => (
-              <CaseStudyCard
-                key={study.title}
-                {...study}
-                href={withBasePath(`/case-studies/${study.slug}`)}
-              />
-            ))}
+      <section className="selected-work" id="work" aria-labelledby="work-title">
+        <SectionHeader
+          className="selected-work__header"
+          title="Selected work"
+          id="work-title"
+        />
+        <div className="selected-work__grid">
+          <div className="selected-work__column">
+            {renderCard(knightProject, "selected-work__card--knight")}
+            {renderCard(aiSavingsProject, "selected-work__card--ai")}
           </div>
-          <div className="case-column case-column-offset">
-            {visibleCaseStudies.slice(1, 2).map((study) => (
-              <CaseStudyCard
-                key={study.title}
-                {...study}
-                href={withBasePath(`/case-studies/${study.slug}`)}
-              />
-            ))}
+          <div className="selected-work__column selected-work__column--offset">
+            {renderCard(visitPlannProject, "selected-work__card--visitplann")}
           </div>
         </div>
       </section>
 
-      <Footer navigate={navigate} />
+      <Footer />
     </>
   );
 }

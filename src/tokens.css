@@ -92,6 +92,8 @@
   --stat-gap: 6px;
   --blur-frost: 12px;
   --card-cover-height: 370px;
+  --work-pad-x: 50px;
+  --work-offset: 310px;
   --page-pad-x: var(--space-80);
   --nav-pad-x: 50px;
   --badge-fill: color-mix(in srgb, var(--color-bg) 60%, transparent);

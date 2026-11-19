@@ -1,7 +1,7 @@
 // Home "Selected work" cards. Copy is taken verbatim from Figma (701:194, 701:258, 701:321).
-import knightCard from "../assets/cards/knight-card.avif";
-import visitPlannCard from "../assets/cards/visitplann-card.avif";
-import aiSavingsCard from "../assets/cards/ai-savings-card.avif";
+import knightCard from "../assets/cards/knight-card.png";
+import visitPlannCard from "../assets/cards/visitplann-card.png";
+import aiSavingsCard from "../assets/cards/ai-savings-card.png";
 
 export const knightProject = {
   slug: "knight",

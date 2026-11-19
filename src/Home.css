@@ -33,6 +33,7 @@
 }
 
 .hero-greeting {
+  margin: 0;
   font-size: var(--fs-heading-hero-support);
   font-weight: 400;
   line-height: 0.9;
@@ -46,13 +47,12 @@
   line-height: 1.1;
   text-align: center;
   color: var(--color-accent);
-  text-shadow:
-    0 20px 40px rgba(127, 90, 240, 0.25),
-    0 20px 40px rgba(127, 90, 240, 0.15);
 }
 
 .hero-subtitle {
   width: min(100%, 37.125rem);
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: auto;
   font-size: var(--fs-heading-hero-support);
   font-weight: 400;
@@ -107,12 +107,12 @@
   position: absolute;
   inset: -0.25rem;
   border-radius: inherit;
-  border: 2px solid rgba(127, 90, 240, 0.55);
+  border: var(--stroke-bold) solid color-mix(in srgb, var(--color-accent) 55%, transparent);
   animation: pulse-ring 1.8s ease-out infinite;
 }
 
 .hero-availability-text {
-  color: var(--color-secondary);
+  color: var(--color-text-soft);
   font-size: var(--fs-body);
   font-weight: 400;
   line-height: 1.5;
@@ -122,40 +122,6 @@
   display: flex;
   gap: var(--space-md);
   align-items: center;
-}
-
-.hero-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 6.75rem;
-  min-height: 3rem;
-  padding: 0.75rem 1.125rem;
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
-  color: var(--color-text);
-  font-size: var(--fs-ui);
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.hero-button:hover,
-.hero-button:focus-visible {
-  transform: translateY(-1px);
-  outline: none;
-}
-
-.hero-button-primary {
-  background: rgba(127, 90, 240, 0.7);
-}
-
-.hero-button-secondary {
-  border-color: var(--color-accent);
-  background: transparent;
 }
 
 /* Pulse animation for the availability status dot */
@@ -275,26 +241,31 @@
 .selected-work {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
-  margin-top: 7.5rem;
-  padding: 0 var(--page-gutter) 6rem;
+  gap: var(--space-40);
+  margin-top: var(--space-40);
+  padding: 0 var(--work-pad-x);
+  scroll-margin-top: var(--space-80);
 }
 
-.caseStudy {
+.selected-work__header {
+  padding: var(--space-56) var(--space-8) 0;
+}
+
+.selected-work__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: calc(var(--space-md) + 0.25rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-20);
   align-items: start;
 }
 
-.case-column {
+.selected-work__column {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--space-lg) + 0.875rem);
+  gap: var(--space-40);
 }
 
-.case-column-offset {
-  padding-top: 7rem;
+.selected-work__column--offset {
+  padding-top: var(--work-offset);
 }
 
 .dot-grid-background {
@@ -339,14 +310,6 @@
   .design-arrow {
     display: none;
   }
-
-  .caseStudy {
-    grid-template-columns: 1fr;
-  }
-
-  .case-column-offset {
-    padding-top: 0;
-  }
 }
 
 /* Mobile: 1 - 799 */
@@ -389,12 +352,6 @@
     flex-wrap: nowrap;
   }
 
-  .hero-button {
-    min-height: 2.875rem;
-    padding: 0.75rem 1rem;
-    font-size: var(--fs-ui);
-  }
-
   .design-steps {
     grid-template-columns: 1fr;
     gap: 2.125rem;
@@ -412,25 +369,36 @@
   }
 
   .selected-work {
-    gap: 0.875rem;
-    margin-top: 4.25rem;
-    padding-bottom: 3.5625rem;
+    --work-pad-x: var(--space-24);
+    gap: var(--space-24);
   }
+}
 
-  .selected-work-title {
-    font-size: var(--fs-heading-xl);
-  }
-
-  .caseStudy {
-    grid-template-columns: 1fr;
-  }
-
-  .case-column {
-    gap: 1.5rem;
-  }
-
-  .case-column-offset {
+/* Below 1024: one column — Knight Training, Visitplann, AI Savings. */
+@media (max-width: 1023px) {
+  .selected-work__grid {
     display: flex;
+    flex-direction: column;
+    gap: var(--space-40);
+  }
+
+  .selected-work__column {
+    display: contents;
+  }
+
+  .selected-work__column--offset {
     padding-top: 0;
+  }
+
+  .selected-work__card--knight {
+    order: 1;
+  }
+
+  .selected-work__card--visitplann {
+    order: 2;
+  }
+
+  .selected-work__card--ai {
+    order: 3;
   }
 }

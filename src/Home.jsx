@@ -138,9 +138,9 @@ function Home({ navigate }) {
           <div className="hero-details">
             <div className="hero-copy-block" data-hero-item>
               <p className="hero-description">
-                I design and ship mobile and web products—turning complex
-                requirements into clear flows, high-quality UI, and scalable
-                design systems with engineers.
+                I design mobile products and work close to the code: four years
+                on consumer and B2B apps, from offline-first field apps to habit
+                loops.
               </p>
               <div className="hero-availability">
                 <span className="hero-availability-dot" />

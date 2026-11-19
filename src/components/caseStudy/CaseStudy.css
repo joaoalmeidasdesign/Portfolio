@@ -1,0 +1,752 @@
+/* Shared case study template */
+.cs-page {
+  /* Full-bleed bands inside the centred #root shell. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* ---------- Hero ---------- */
+.cs-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-24) var(--page-pad-x) var(--space-120);
+}
+
+.cs-hero__image {
+  display: block;
+  width: 100%;
+  height: var(--cs-hero-image-height);
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.cs-hero__title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-64);
+}
+
+.cs-hero__title {
+  flex: 0 1 auto;
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-cs-hero-title);
+  font-weight: var(--font-black);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+/* Visitplann: one-line title sits on the baseline of the meta column. */
+.cs-hero--bottom .cs-hero__title-row {
+  align-items: flex-end;
+}
+
+.cs-hero__meta {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--space-16);
+  min-width: 0;
+}
+
+.cs-hero__lead {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.375rem, 1.1rem + 0.6vw, var(--fs-28));
+  font-weight: var(--font-medium);
+  line-height: 1.35;
+}
+
+.cs-hero__sub {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: var(--fs-18);
+  font-weight: var(--font-light);
+  line-height: 1.5;
+}
+
+/* Stat tiles */
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-stats > li,
+.cs-stats .stat {
+  height: 100%;
+}
+
+.cs-stats--stacked {
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+
+/* ---------- Bands ---------- */
+.cs-band {
+  padding: var(--space-120) var(--page-pad-x);
+}
+
+.cs-band--surface {
+  background-color: var(--color-surface);
+}
+
+.cs-band--bg {
+  background-color: var(--color-bg);
+}
+
+.cs-band__inner {
+  max-width: calc(var(--content-max) - var(--space-80) * 2);
+  margin: 0 auto;
+}
+
+.cs-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+}
+
+.cs-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.cs-section__eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--fs-20);
+  font-weight: var(--font-black);
+  line-height: normal;
+  letter-spacing: 0.08em;
+}
+
+.cs-section__intro {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  font-weight: var(--font-light);
+  line-height: 1.5;
+}
+
+/* ---------- Overview ---------- */
+.cs-overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+}
+
+.cs-roles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-32);
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+.cs-card__label {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--fs-14);
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cs-card__text {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.cs-problem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-64);
+}
+
+.cs-problem__title {
+  flex: 0 0 var(--cs-problem-title-width);
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2.5rem, 1.9rem + 1.6vw, var(--fs-56));
+  font-weight: var(--font-black);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+  text-transform: uppercase;
+}
+
+.cs-problem__text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--space-20);
+  min-width: 0;
+}
+
+.cs-problem__text p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-20);
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cs-problem__text p.cs-text--soft {
+  color: var(--color-text-soft);
+}
+
+/* ---------- Text blocks ---------- */
+.cs-text {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-8) + var(--stroke-bold));
+  min-width: 0;
+}
+
+.cs-text__heading {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-20);
+  font-weight: var(--font-bold);
+  line-height: normal;
+}
+
+.cs-text__body,
+.cs-text__body p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-18);
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cs-text--soft .cs-text__body,
+.cs-text--soft .cs-text__body p {
+  color: var(--color-text-soft);
+}
+
+.cs-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-bullets li::before {
+  content: "•";
+  display: inline-block;
+  width: 1.2em;
+}
+
+.cs-columns {
+  display: grid;
+  gap: var(--space-40);
+  align-items: start;
+}
+
+.cs-columns--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cs-columns--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.cs-box {
+  padding: var(--space-32) var(--space-40) var(--space-32) var(--space-32);
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/* Subsection title inside a section (e.g. "The same month, from the same feedback") */
+.cs-subtitle {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
+  font-weight: var(--font-black);
+  line-height: normal;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.cs-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+/* ---------- Images ---------- */
+.cs-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  min-width: 0;
+  margin: 0;
+}
+
+.cs-figure__caption {
+  margin-top: var(--stroke-bold);
+  color: var(--color-text-soft);
+  font-size: var(--fs-14);
+  font-weight: var(--font-light);
+  line-height: normal;
+}
+
+.cs-panel {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+  scrollbar-width: thin;
+}
+
+.cs-panel__track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-24);
+  width: max-content;
+  min-width: 100%;
+  min-height: var(--panel-h);
+  padding: var(--space-24);
+}
+
+.cs-phone {
+  display: block;
+  flex: 0 0 auto;
+  width: var(--phone-w);
+  height: var(--phone-h);
+  object-fit: cover;
+  border-radius: calc(var(--phone-w) * 0.095);
+  box-shadow: var(--shadow-phone);
+}
+
+.cs-flat {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cs-flat--panel {
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+/* ---------- Step rows ---------- */
+.cs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-56);
+  padding: var(--space-40);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.cs-step--reverse {
+  flex-direction: row-reverse;
+}
+
+.cs-step__text,
+.cs-step__media {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cs-step__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.cs-step__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 1.6rem + 1vw, 2.5rem);
+  font-weight: var(--font-black);
+  line-height: normal;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.cs-step__number {
+  color: var(--color-accent);
+  font-size: var(--fs-56);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* ---------- Loop diagram ---------- */
+.cs-loop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-64);
+}
+
+.cs-loop__diagram {
+  flex: 0 0 auto;
+  width: min(100%, 35rem);
+}
+
+.cs-loop__diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.cs-loop__intro {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--space-20);
+  min-width: 0;
+}
+
+.cs-loop__intro p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-20);
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cs-loop__intro p.cs-text--soft {
+  color: var(--color-text-soft);
+}
+
+/* ---------- Table ---------- */
+.cs-table-wrap {
+  overflow-x: auto;
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+.cs-table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.cs-table th,
+.cs-table td {
+  padding: var(--space-16) var(--space-24);
+  border-bottom: var(--stroke-hairline) solid var(--color-border);
+  vertical-align: middle;
+}
+
+.cs-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.cs-table th {
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  font-size: var(--fs-13);
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cs-table th:last-child,
+.cs-table__status {
+  width: var(--cs-table-status-width);
+}
+
+.cs-table__said,
+.cs-table__changed {
+  font-size: var(--fs-16);
+  line-height: 1.45;
+}
+
+.cs-table__said {
+  color: var(--color-text);
+  font-weight: var(--font-regular);
+}
+
+.cs-table__changed {
+  color: var(--color-text-soft);
+  font-weight: var(--font-light);
+}
+
+/* ---------- Conclusion ---------- */
+.cs-conclusion {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-64);
+  align-items: start;
+}
+
+.cs-conclusion__text p {
+  margin: 0 0 1.65em;
+  color: var(--color-text);
+  font-size: var(--fs-20);
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cs-conclusion__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Next case study ---------- */
+.cs-next {
+  display: flex;
+  align-items: center;
+  gap: var(--space-48);
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+}
+
+.cs-next__text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.cs-next__title {
+  color: var(--color-text);
+  font-size: clamp(2.75rem, 1.6rem + 3.2vw, 5rem);
+  font-weight: var(--font-black);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  transition: color var(--duration-fast) ease-out;
+}
+
+.cs-next__desc {
+  color: var(--color-text-soft);
+  font-size: var(--fs-20);
+  font-weight: var(--font-light);
+}
+
+.cs-next__image {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  transition: transform 400ms ease-out;
+}
+
+.cs-next:hover .cs-next__title,
+.cs-next:focus-visible .cs-next__title {
+  color: var(--color-accent-light);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cs-next:hover .cs-next__image {
+    transform: scale(1.03);
+  }
+}
+
+/* The contact band follows the "Next" block directly. */
+.cs-page + .page-end {
+  padding-top: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1279px) {
+  .cs-problem__title {
+    flex-basis: 30%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .cs-hero__title-row,
+  .cs-loop,
+  .cs-problem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-problem__title {
+    flex-basis: auto;
+  }
+
+  .cs-loop__diagram {
+    align-self: center;
+  }
+
+  .cs-roles {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-step,
+  .cs-step--reverse {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-columns--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-conclusion {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-next {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-next__image {
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 616 / 320;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs-page,
+  .cs-page ~ .page-end {
+    --page-pad-x: var(--space-24);
+  }
+
+  .cs-band {
+    padding-block: var(--space-80);
+  }
+
+  .cs-hero {
+    padding-bottom: var(--space-80);
+  }
+
+  .cs-hero__image {
+    height: auto;
+    aspect-ratio: 1280 / 620;
+  }
+
+  .cs-columns--2,
+  .cs-columns--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-step {
+    padding: var(--space-24);
+  }
+
+  .cs-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-stats--stacked {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-section {
+    gap: var(--space-48);
+  }
+}
+
+/* ---------- Loop diagram SVG ---------- */
+.loop-diagram__arrow {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: var(--stroke-bold);
+  stroke-linecap: round;
+}
+
+.loop-diagram__circle {
+  fill: var(--color-accent);
+}
+
+.loop-diagram__circle--light {
+  fill: var(--color-accent-light);
+}
+
+.loop-diagram__num {
+  fill: var(--color-text);
+  font-size: var(--fs-28);
+  font-weight: var(--font-bold);
+}
+
+.loop-diagram__num--dark {
+  fill: var(--color-bg);
+}
+
+.loop-diagram__label {
+  fill: var(--color-text);
+  font-size: var(--fs-18);
+  font-weight: var(--font-semibold);
+}
+
+.loop-diagram__center {
+  fill: var(--color-text-muted);
+  font-size: var(--fs-18);
+  font-weight: var(--font-light);
+}
+
+/* Section 02 body copy uses the soft colour at 1.6 line height. */
+.cs-text--soft-copy {
+  color: var(--color-text-soft);
+  line-height: 1.6;
+}
+
+/* Section 03: text column and image column 64px apart. */
+.cs-columns--wide-gap {
+  gap: var(--space-64);
+}
+
+.cs-stack--tight {
+  gap: var(--space-24);
+}
+
+/* Captions that only exist for screen readers (panel label). */
+.cs-figure--no-caption .cs-figure__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.cs-figure--no-caption {
+  position: relative;
+}

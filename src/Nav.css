@@ -39,8 +39,17 @@
 
 .navbar-buttons {
   display: flex;
-  gap: var(--space-16);
+  gap: var(--space-32);
   align-items: center;
+}
+
+/* Home's nav is tighter in Figma (50px padding, 16px link gap). */
+.navbar--home {
+  --nav-pad-x: var(--nav-pad-x-home);
+}
+
+.navbar--home .navbar-buttons {
+  gap: var(--space-16);
 }
 
 /* Nav link (Figma 710:340) */

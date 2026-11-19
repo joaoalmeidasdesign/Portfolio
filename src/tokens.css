@@ -60,8 +60,8 @@
   --font-black: 900;
   --tracking-title: -0.02em;
 
-  /* Fluid title sizes (64→176 hero, 40→72 section) */
-  --fs-cs-hero-title: clamp(4rem, 1.2rem + 11.5vw, 11rem);
+  /* Fluid title sizes (hero 64→128 to match Figma at 1440, section 40→72) */
+  --fs-cs-hero-title: clamp(4rem, 1.5rem + 7.22vw, 8rem);
   --fs-section-title: clamp(2.5rem, 1.6rem + 3.4vw, 4.5rem);
 
   /* Motion */
@@ -95,8 +95,13 @@
   --work-pad-x: 50px;
   --work-offset: 310px;
   --page-pad-x: var(--space-80);
-  --nav-pad-x: 50px;
+  --nav-pad-x: var(--space-80);
+  --nav-pad-x-home: 50px;
   --badge-fill: color-mix(in srgb, var(--color-bg) 60%, transparent);
+  --shadow-phone: 0 var(--space-16) var(--space-40) color-mix(in srgb, black 45%, transparent);
+  --cs-hero-image-height: 620px;
+  --cs-problem-title-width: 420px;
+  --cs-table-status-width: 160px;
 
   /* Type scale (rem, from Figma px at 16px root) */
   --fs-13: 0.8125rem;

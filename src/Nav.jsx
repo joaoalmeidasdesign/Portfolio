@@ -146,7 +146,7 @@ function Nav({ currentPath = "/", navigate }) {
 
   return (
     <nav
-      className={`navbar ${isMenuOpen ? "navbar-menu-open" : ""}`}
+      className={`navbar ${currentPath === "/" ? "navbar--home" : ""} ${isMenuOpen ? "navbar-menu-open" : ""}`}
       ref={navRef}
       aria-label="Main"
     >

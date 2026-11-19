@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Nav.css";
-import { withBasePath } from "./pathUtils.js";
+import { isPlainClick, withBasePath } from "./pathUtils.js";
 import { CV_ROUTE } from "./siteLinks.js";
 import { useCv } from "./cv/CvContext.js";
 import logoSrc from "./assets/logo.svg";
@@ -48,7 +48,7 @@ function Nav({ currentPath = "/", navigate }) {
 
   // Shared navigation helper so desktop and mobile links behave the same way.
   const handleNavigate = (event, nextPath, options) => {
-    if (!navigate) return;
+    if (!navigate || !isPlainClick(event)) return;
     event.preventDefault();
     setIsMenuOpen(false);
     navigate(nextPath, options);
@@ -124,7 +124,7 @@ function Nav({ currentPath = "/", navigate }) {
   // Every page ends with the contact band (#contact), so Contact scrolls there.
   const handleContact = (event) => {
     const target = document.getElementById("contact");
-    if (!target) return;
+    if (!target || !isPlainClick(event)) return;
     event.preventDefault();
     setIsMenuOpen(false);
     const reduceMotion = window.matchMedia(
@@ -161,6 +161,7 @@ function Nav({ currentPath = "/", navigate }) {
         highlight
         href={withBasePath(CV_ROUTE)}
         onClick={(event) => {
+          if (!isPlainClick(event)) return;
           setIsMenuOpen(false);
           openCv(event);
         }}

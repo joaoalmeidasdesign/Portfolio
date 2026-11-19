@@ -68,3 +68,17 @@ export function withBasePath(pathname = "/") {
 
   return `${normalizedBasePath}${normalizedPathname}`;
 }
+
+// True for an ordinary left click. Cmd/Ctrl/Shift/Alt or middle clicks are
+// left to the browser so links can still open in a new tab or window.
+export function isPlainClick(event) {
+  if (!event || event.type !== "click") return true;
+  return (
+    !event.defaultPrevented &&
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+  );
+}

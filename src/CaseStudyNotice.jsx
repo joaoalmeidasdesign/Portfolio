@@ -1,6 +1,6 @@
 import Nav from "./Nav.jsx";
 import "./CaseStudyNotice.css";
-import { withBasePath } from "./pathUtils.js";
+import { withBasePath, isPlainClick } from "./pathUtils.js";
 
 function CaseStudyNotice({ navigate }) {
   return (
@@ -19,7 +19,7 @@ function CaseStudyNotice({ navigate }) {
             className="case-study-notice__button"
             href={`${withBasePath("/")}#work`}
             onClick={(event) => {
-              if (!navigate) return;
+              if (!navigate || !isPlainClick(event)) return;
               event.preventDefault();
               navigate("/", { hash: "work", behavior: "smooth" });
             }}

@@ -13,7 +13,7 @@ import searchDiscovery from "./assets/Search & Discovery.png";
 import strategyPlanning from "./assets/Strategy & Planning.png";
 import designPrototype from "./assets/Design & Prototype.png";
 import collaborateIterate from "./assets/Collaborate & iterate.png";
-import { withBasePath } from "./pathUtils.js";
+import { isPlainClick, withBasePath } from "./pathUtils.js";
 import {
   aiSavingsProject,
   knightProject,
@@ -85,7 +85,7 @@ function Home({ navigate }) {
   // Smooth-scroll to an on-page section, respecting reduced motion.
   const scrollToSection = (event, id) => {
     const target = document.getElementById(id);
-    if (!target) return;
+    if (!target || !isPlainClick(event)) return;
     event.preventDefault();
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -94,7 +94,7 @@ function Home({ navigate }) {
   };
 
   const openCaseStudy = (event, slug) => {
-    if (!navigate) return;
+    if (!navigate || !isPlainClick(event)) return;
     event.preventDefault();
     navigate(`/case-studies/${slug}`);
   };

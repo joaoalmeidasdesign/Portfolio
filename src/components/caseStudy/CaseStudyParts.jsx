@@ -3,7 +3,7 @@
 import "./CaseStudy.css";
 import Stat from "../Stat.jsx";
 import { TagList } from "../Tag.jsx";
-import { withBasePath } from "../../pathUtils.js";
+import { isPlainClick, withBasePath } from "../../pathUtils.js";
 
 /* ---------- Hero ---------- */
 export function CaseStudyHero({ image, title, lead, sub, tags, stats, variant = "major" }) {
@@ -338,7 +338,7 @@ export function CaseStudyConclusion({
 export function NextCaseStudy({ slug, title, text, image, navigate, tone = "bg" }) {
   const href = withBasePath(`/case-studies/${slug}`);
   const handleClick = (event) => {
-    if (!navigate) return;
+    if (!navigate || !isPlainClick(event)) return;
     event.preventDefault();
     navigate(`/case-studies/${slug}`);
   };

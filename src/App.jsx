@@ -13,6 +13,7 @@ import KnightCaseStudy from "./KnightCaseStudy.jsx";
 import AiSavingsCaseStudy from "./AiSavingsCaseStudy.jsx";
 import {
   getAppPathname,
+  isPlainClick,
   restoreRedirectPath,
   withBasePath,
 } from "./pathUtils.js";
@@ -94,6 +95,8 @@ function App() {
   }, []);
 
   const openCv = useCallback((event) => {
+    // Cmd/Ctrl-click etc. opens /cv in a new tab instead.
+    if (!isPlainClick(event)) return;
     event?.preventDefault?.();
     cvOpenerRef.current = event?.currentTarget ?? document.activeElement;
     window.history.pushState({ cvFrom: pathnameRef.current }, "", withBasePath(CV_ROUTE));
@@ -116,7 +119,16 @@ function App() {
   useEffect(() => {
     if (wasCvOpen.current && !cvOpen) {
       const opener = cvOpenerRef.current;
-      if (opener && document.contains(opener)) opener.focus();
+      if (opener && document.contains(opener)) {
+        opener.focus();
+      } else {
+        // The opener can disappear (e.g. "Get CV" in the closed phone menu):
+        // fall back to the menu button, then the logo.
+        const fallback = [".nav-toggle", ".navbar-logo"]
+          .map((selector) => document.querySelector(selector))
+          .find((el) => el && el.offsetParent !== null);
+        fallback?.focus();
+      }
       cvOpenerRef.current = null;
     }
     wasCvOpen.current = cvOpen;

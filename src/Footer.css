@@ -73,6 +73,8 @@
   display: inline-flex;
   align-items: center;
   /* 44px hit area without changing the visual row height. */
+  justify-content: center;
+  min-width: var(--hit-min);
   min-height: var(--hit-min);
   margin-block: calc((1lh - var(--hit-min)) / 2);
   color: var(--color-text-muted);

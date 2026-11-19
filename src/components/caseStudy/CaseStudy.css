@@ -811,3 +811,254 @@
 .cs-text--spaced .cs-text__body + .cs-text__body {
   margin-top: 1.65em;
 }
+
+/* ---------- Small layout (AI Savings Assistant) ---------- */
+.cs-page--small .cs-band {
+  padding-block: var(--space-96);
+}
+
+.cs-page--small .cs-hero {
+  padding-bottom: var(--space-96);
+}
+
+.cs-split {
+  display: flex;
+  align-items: center;
+  gap: var(--space-56);
+}
+
+.cs-split > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cs-split--top {
+  align-items: flex-start;
+}
+
+.cs-small-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.cs-small-hero__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(3.5rem, 1.6rem + 4.8vw, 5.5rem);
+  font-weight: var(--font-black);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.cs-small-hero__lead {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.25rem, 1.1rem + 0.4vw, var(--fs-24));
+  font-weight: var(--font-medium);
+  line-height: 1.4;
+}
+
+.cs-small-hero__sub {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 1.0625rem;
+  font-weight: var(--font-light);
+  line-height: 1.6;
+}
+
+.cs-small-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 612 / 560;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+.cs-roles--surface .cs-card {
+  padding: var(--stat-pad);
+  background-color: var(--color-surface);
+}
+
+.cs-small-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+.cs-small-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.cs-small-title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2.5rem, 1.9rem + 1.6vw, var(--fs-56));
+  font-weight: var(--font-black);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+  text-transform: uppercase;
+}
+
+.cs-small-intro {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: var(--fs-20);
+  font-weight: var(--font-light);
+  line-height: 1.5;
+}
+
+/* The brief */
+.cs-brief {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-64);
+}
+
+.cs-brief__title {
+  flex: 0 0 var(--cs-brief-title-width);
+  font-size: clamp(2.25rem, 1.8rem + 1.2vw, 3rem);
+}
+
+.cs-brief__text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--space-16);
+  min-width: 0;
+}
+
+.cs-brief__text p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.1875rem;
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cs-brief__text p.cs-brief__rule {
+  color: var(--color-text-soft);
+  font-weight: var(--font-medium);
+}
+
+/* Three decisions */
+.cs-decisions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-16);
+  align-items: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-decision {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--stat-pad);
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.cs-decision__number {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--fs-32);
+  font-weight: var(--font-black);
+  line-height: normal;
+}
+
+.cs-decision__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-20);
+  font-weight: var(--font-bold);
+  line-height: 1.3;
+}
+
+.cs-decision__body {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-16);
+  font-weight: var(--font-light);
+  line-height: 1.6;
+}
+
+.cs-decision__note {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-13);
+  line-height: 1.5;
+}
+
+/* How I used AI */
+.cs-ai-checks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.cs-overrules {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-overrules li {
+  padding-left: var(--space-16);
+  border-left: var(--stroke-accent) solid var(--color-accent);
+  color: var(--color-text-soft);
+  font-size: var(--fs-16);
+  line-height: 1.55;
+}
+
+.cs-ai-workflow__text {
+  color: var(--color-text);
+  font-size: var(--fs-16);
+  font-weight: var(--font-light);
+  line-height: 1.55;
+}
+
+/* Try the prototype */
+.cs-try {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-20);
+}
+
+.cs-page--small .cs-next__image {
+  height: 17.5rem;
+}
+
+@media (max-width: 1023px) {
+  .cs-split,
+  .cs-brief {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-brief__title {
+    flex-basis: auto;
+  }
+
+  .cs-decisions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs-page--small .cs-band {
+    padding-block: var(--space-80);
+  }
+}

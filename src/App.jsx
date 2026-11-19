@@ -6,6 +6,7 @@ import CaseStudyNotice from "./CaseStudyNotice.jsx";
 import VisitPlannCaseStudy from "./VisitPlannCaseStudy.jsx";
 import BrancoPrataCaseStudy from "./BrancoPrataCaseStudy.jsx";
 import KnightCaseStudy from "./KnightCaseStudy.jsx";
+import AiSavingsCaseStudy from "./AiSavingsCaseStudy.jsx";
 import {
   getAppPathname,
   restoreRedirectPath,
@@ -16,6 +17,7 @@ const caseStudyPages = {
   visitplann: VisitPlannCaseStudy,
   brancoprata: BrancoPrataCaseStudy,
   knight: KnightCaseStudy,
+  "ai-savings": AiSavingsCaseStudy,
 };
 
 // Scroll helper used after navigation when we want to land on a specific section.

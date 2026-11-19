@@ -63,6 +63,10 @@
   font-size: var(--fs-56);
 }
 
+.stat--tile.stat--sm .stat__value {
+  font-size: var(--fs-40);
+}
+
 .stat--tile .stat__label {
   font-size: var(--fs-15);
 }

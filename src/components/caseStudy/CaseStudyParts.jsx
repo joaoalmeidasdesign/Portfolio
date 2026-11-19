@@ -50,7 +50,7 @@ export function StatRow({ stats, className = "" }) {
     <ul className={`cs-stats ${className}`.trim()} data-reveal-stagger>
       {stats.map((stat) => (
         <li key={stat.label}>
-          <Stat value={stat.value} label={stat.label} />
+          <Stat value={stat.value} label={stat.label} size={stat.size} />
         </li>
       ))}
     </ul>
@@ -58,10 +58,10 @@ export function StatRow({ stats, className = "" }) {
 }
 
 /* ---------- Overview: role cards + the problem ---------- */
-export function CaseStudyOverview({ roles, problemTitle = "The problem", problem }) {
+export function CaseStudyOverview({ roles, problemTitle = "The problem", problem, tight = false }) {
   return (
     <section className="cs-band cs-band--surface" aria-labelledby="cs-problem-title">
-      <div className="cs-band__inner cs-overview">
+      <div className={`cs-band__inner cs-overview ${tight ? "cs-gap-56" : ""}`.trim()}>
         <ul className="cs-roles" data-reveal-stagger>
           {roles.map((role) => (
             <li className="cs-card" key={role.label}>
@@ -91,7 +91,7 @@ export function CaseStudyOverview({ roles, problemTitle = "The problem", problem
 }
 
 /* ---------- Section shell ---------- */
-export function CaseStudySection({ id, eyebrow, title, intro, tone = "bg", children }) {
+export function CaseStudySection({ id, eyebrow, title, intro, tone = "bg", tight = false, children }) {
   const headingId = `${id}-title`;
   return (
     <section
@@ -99,7 +99,7 @@ export function CaseStudySection({ id, eyebrow, title, intro, tone = "bg", child
       id={id}
       aria-labelledby={headingId}
     >
-      <div className="cs-band__inner cs-section">
+      <div className={`cs-band__inner cs-section ${tight ? "cs-gap-56" : ""}`.trim()}>
         <header className="cs-section__header" data-reveal>
           {eyebrow ? <p className="cs-section__eyebrow">{eyebrow}</p> : null}
           <h2 className="section-title" id={headingId}>
@@ -165,10 +165,10 @@ export function Columns({ children, count = 2, className = "" }) {
 }
 
 // Boxed text card (e.g. "What proved it").
-export function BoxedText({ heading, body, className = "" }) {
+export function BoxedText({ heading, body, soft = false, tone = "surface", className = "" }) {
   return (
-    <div className={`cs-box ${className}`.trim()} data-reveal>
-      <TextBlock heading={heading} body={body} />
+    <div className={`cs-box cs-box--${tone} ${className}`.trim()} data-reveal>
+      <TextBlock heading={heading} body={body} soft={soft} />
     </div>
   );
 }
@@ -213,15 +213,20 @@ export function PhonePanel({ images, height, caption, tag, className = "" }) {
 }
 
 // A single flat image (diagram, board, cover) inside the panel style.
-export function FlatImage({ image, caption, className = "", panel = true }) {
+// `box` is the Figma frame size [w, h]; `fit` is how the image fills it.
+export function FlatImage({ image, box, fit = "cover", caption, className = "", panel = false, style }) {
   return (
-    <figure className={`cs-figure ${className}`.trim()} data-reveal>
+    <figure className={`cs-figure ${className}`.trim()} data-reveal style={style}>
       <img
         className={`cs-flat ${panel ? "cs-flat--panel" : ""}`.trim()}
         src={image.src}
         alt={image.alt}
         width={image.width}
         height={image.height}
+        style={{
+          aspectRatio: box ? `${box[0]} / ${box[1]}` : undefined,
+          objectFit: fit,
+        }}
         loading="lazy"
         decoding="async"
       />
@@ -295,18 +300,31 @@ export function FeedbackTable({ caption, columns, rows }) {
 }
 
 /* ---------- Conclusion ---------- */
-export function CaseStudyConclusion({ title = "Where it stands", paragraphs, stats, children }) {
+export function CaseStudyConclusion({
+  title = "Where it stands",
+  paragraphs,
+  stats,
+  tone = "surface",
+  tight = false,
+  className = "",
+  children,
+}) {
   return (
-    <section className="cs-band cs-band--surface" aria-labelledby="cs-conclusion-title">
-      <div className="cs-band__inner cs-section">
+    <section className={`cs-band cs-band--${tone}`} aria-labelledby="cs-conclusion-title">
+      <div className={`cs-band__inner cs-section ${tight ? "cs-gap-56" : ""}`.trim()}>
         <h2 className="section-title" id="cs-conclusion-title" data-reveal>
           {title}
         </h2>
-        <div className="cs-conclusion" data-reveal>
+        <div className={`cs-conclusion ${className}`.trim()} data-reveal>
           <div className="cs-conclusion__text">
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+            {paragraphs.map((paragraph) => {
+              const text = typeof paragraph === "string" ? paragraph : paragraph.text;
+              return (
+                <p key={text} className={paragraph.soft ? "cs-text--soft" : undefined}>
+                  {text}
+                </p>
+              );
+            })}
             {children}
           </div>
           {stats?.length ? <StatRow stats={stats} className="cs-stats--stacked" /> : null}
@@ -317,7 +335,7 @@ export function CaseStudyConclusion({ title = "Where it stands", paragraphs, sta
 }
 
 /* ---------- Next case study ---------- */
-export function NextCaseStudy({ slug, title, text, image, navigate }) {
+export function NextCaseStudy({ slug, title, text, image, navigate, tone = "bg" }) {
   const href = withBasePath(`/case-studies/${slug}`);
   const handleClick = (event) => {
     if (!navigate) return;
@@ -325,7 +343,7 @@ export function NextCaseStudy({ slug, title, text, image, navigate }) {
     navigate(`/case-studies/${slug}`);
   };
   return (
-    <section className="cs-band cs-band--bg" aria-label="Next case study">
+    <section className={`cs-band cs-band--${tone}`} aria-label="Next case study">
       <div className="cs-band__inner">
         <a className="cs-next" href={href} onClick={handleClick} data-reveal>
           <span className="cs-next__text">

@@ -750,3 +750,64 @@
 .cs-figure--no-caption {
   position: relative;
 }
+
+/* Visitplann / AI Savings frames use 56px section gaps. */
+.cs-gap-56 {
+  gap: var(--space-56);
+}
+
+/* Boxed note with an accent rule on the left ("What proved it", "Why Material 3"). */
+.cs-box {
+  padding: var(--stat-pad);
+  border: 0;
+  border-left: var(--space-4) solid var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.cs-box--surface {
+  background-color: var(--color-surface);
+}
+
+.cs-box--bg {
+  background-color: var(--color-bg);
+  padding: calc(var(--space-32) + var(--space-4));
+}
+
+.cs-flat {
+  border-radius: var(--radius-md);
+}
+
+/* Row of flat images whose widths follow their Figma frame widths. */
+.cs-image-row {
+  display: flex;
+  gap: var(--space-16);
+  align-items: flex-start;
+}
+
+.cs-image-row > .cs-figure {
+  flex: var(--grow, 1) 1 0;
+}
+
+.cs-conclusion__text p.cs-text--soft {
+  color: var(--color-text-soft);
+}
+
+.cs-conclusion--gap .cs-conclusion__text p {
+  margin-bottom: var(--space-20);
+}
+
+@media (max-width: 767px) {
+  .cs-image-row {
+    flex-direction: column;
+  }
+
+  .cs-image-row > .cs-figure {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* Multi-paragraph text blocks keep a blank line between paragraphs. */
+.cs-text--spaced .cs-text__body + .cs-text__body {
+  margin-top: 1.65em;
+}

@@ -176,12 +176,34 @@
 @media (max-width: 767px) {
   .project-card__cover {
     height: auto;
-    aspect-ratio: 660 / 370;
+    aspect-ratio: 4 / 3;
+  }
+
+  .project-card__badges {
+    left: var(--space-16);
+    right: var(--space-16);
+    bottom: var(--space-16);
+    gap: var(--space-8);
+  }
+
+  .project-card__badge {
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--fs-13);
+  }
+
+  .project-card__read-time {
+    top: var(--space-16);
+    right: var(--space-16);
   }
 
   .project-card__stats {
     flex-wrap: wrap;
     gap: var(--space-16);
+  }
+
+  .project-card__stat-group {
+    gap: var(--space-16) var(--space-24);
   }
 }
 

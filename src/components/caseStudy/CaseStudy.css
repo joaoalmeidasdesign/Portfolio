@@ -1067,3 +1067,31 @@
     padding-block: var(--space-80);
   }
 }
+
+/* Phones: rows with long stat values ("10→300km") stack to one column. */
+@media (max-width: 479px) {
+  .cs-stats:has(.stat--sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phones: slightly smaller reading sizes. */
+@media (max-width: 767px) {
+  .cs-text__body,
+  .cs-text__body p,
+  .cs-loop__intro p,
+  .cs-problem__text p,
+  .cs-conclusion__text p,
+  .cs-brief__text p {
+    font-size: var(--fs-16);
+  }
+
+  .cs-text__heading {
+    font-size: var(--fs-18);
+  }
+
+  .cs-small-intro,
+  .cs-section__intro {
+    font-size: var(--fs-18);
+  }
+}

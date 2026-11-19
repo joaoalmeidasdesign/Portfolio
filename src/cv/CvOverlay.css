@@ -1,0 +1,434 @@
+/* CV overlay (Figma 734:351 / 734:457 / 734:560) */
+.cv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-40) var(--space-24);
+}
+
+.cv-scrim {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-bg) 70%, transparent);
+}
+
+.cv-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(var(--cv-modal-width), 100%);
+  max-height: calc(100dvh - var(--space-80));
+  overflow: hidden;
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-modal);
+  color: var(--color-text);
+}
+
+.cv-modal:focus {
+  outline: none;
+}
+
+/* ---------- Toolbar (sticky: the body scrolls beneath it) ---------- */
+.cv-toolbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--space-24) var(--space-16) var(--space-32);
+  border-bottom: var(--stroke-hairline) solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.cv-toolbar__title {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--fs-18);
+  font-weight: var(--font-semibold);
+  line-height: normal;
+}
+
+.cv-close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-40);
+  height: var(--space-40);
+  padding: 0;
+  border: var(--stroke-hairline) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease-out;
+}
+
+.cv-close:hover,
+.cv-close:focus-visible {
+  background-color: var(--fill-button-secondary-hover);
+}
+
+.cv-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.cv-bottombar {
+  display: none;
+}
+
+/* ---------- Document ---------- */
+.cv-body {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-56);
+  padding: var(--space-48) var(--space-48) var(--space-56);
+}
+
+.cv-sidebar {
+  display: flex;
+  flex: 0 0 var(--cv-sidebar-width);
+  flex-direction: column;
+  gap: var(--space-32);
+  min-width: 0;
+}
+
+.cv-main {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--space-40);
+  min-width: 0;
+}
+
+.cv-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-8) + var(--stroke-bold));
+}
+
+.cv-label {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--fs-12);
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Sidebar lists */
+.cv-list {
+  gap: var(--stat-gap);
+}
+
+.cv-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stat-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-list li {
+  color: var(--color-text-soft);
+  font-size: var(--fs-14);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.cv-contact a {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+.cv-contact a:hover,
+.cv-contact a:focus-visible {
+  color: var(--color-accent-light);
+  text-decoration: underline;
+}
+
+.cv-education {
+  gap: var(--space-16);
+}
+
+.cv-edu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cv-edu p {
+  margin: 0;
+}
+
+.cv-edu__degree {
+  color: var(--color-text);
+  font-size: var(--fs-14);
+  font-weight: var(--font-semibold);
+  line-height: 1.4;
+}
+
+.cv-edu__meta {
+  color: var(--color-text-muted);
+  font-size: var(--fs-13);
+}
+
+.cv-edu__note {
+  color: var(--color-text-soft);
+  font-size: var(--fs-13);
+  font-weight: var(--font-light);
+  line-height: 1.55;
+}
+
+/* Main column */
+.cv-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.cv-name {
+  margin: 0;
+  font-size: var(--fs-48);
+  font-weight: var(--font-black);
+  line-height: 1;
+  letter-spacing: var(--tracking-title);
+  text-transform: uppercase;
+}
+
+.cv-title {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--fs-20);
+  font-weight: var(--font-medium);
+}
+
+.cv-summary p {
+  margin: 0;
+  font-size: var(--fs-17);
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cv-experience {
+  gap: var(--stat-pad);
+}
+
+.cv-job,
+.cv-project {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-8) + var(--stroke-bold));
+}
+
+.cv-role-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-16);
+}
+
+.cv-role {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--fs-19);
+  font-weight: var(--font-bold);
+  line-height: normal;
+}
+
+.cv-dates,
+.cv-meta {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-14);
+  line-height: normal;
+}
+
+.cv-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-8) + var(--stroke-bold));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-bullets li,
+.cv-project__desc {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: var(--fs-15);
+  font-weight: var(--font-light);
+  line-height: 1.65;
+}
+
+.cv-bullets li {
+  position: relative;
+  padding-left: var(--space-16);
+}
+
+/* 6px accent dot */
+.cv-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--space-8) + var(--stroke-bold));
+  width: var(--stat-gap);
+  height: var(--stat-gap);
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent);
+}
+
+/* ---------- Motion (desktop): scrim fades, modal fades + scales ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .cv-overlay[data-state="open"] .cv-scrim {
+    animation: cv-fade-in 200ms ease-out both;
+  }
+
+  .cv-overlay[data-state="open"] .cv-modal {
+    animation: cv-modal-in 240ms var(--ease-out-soft) both;
+  }
+
+  .cv-overlay[data-state="closing"] .cv-scrim {
+    animation: cv-fade-in 160ms ease-in reverse both;
+  }
+
+  .cv-overlay[data-state="closing"] .cv-modal {
+    animation: cv-modal-in 160ms var(--ease-out-soft) reverse both;
+  }
+}
+
+@keyframes cv-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cv-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Tablet: full width minus 48px, sidebar above main ---------- */
+@media (max-width: 1023px) {
+  .cv-body {
+    flex-direction: column;
+    gap: var(--space-40);
+  }
+
+  .cv-sidebar {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+/* ---------- Phone: full-screen sheet ---------- */
+@media (max-width: 767px) {
+  .cv-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .cv-modal {
+    width: 100%;
+    max-height: none;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .cv-toolbar {
+    padding: var(--space-16) var(--space-16) var(--space-16) var(--space-20);
+  }
+
+  .cv-toolbar__title {
+    font-size: var(--fs-16);
+  }
+
+  .cv-toolbar .cv-toolbar__open,
+  .cv-toolbar .cv-toolbar__download {
+    display: none;
+  }
+
+  /* One column, in the phone order from Figma. */
+  .cv-body {
+    gap: var(--space-32);
+    padding: var(--space-24) var(--space-20);
+  }
+
+  .cv-sidebar,
+  .cv-main {
+    display: contents;
+  }
+
+  .cv-header { order: 1; }
+  .cv-contact { order: 2; }
+  .cv-summary { order: 3; }
+  .cv-experience { order: 4; }
+  .cv-projects { order: 5; }
+  .cv-skills { order: 6; }
+  .cv-tools { order: 7; }
+  .cv-languages { order: 8; }
+  .cv-education { order: 9; }
+
+  .cv-name {
+    font-size: var(--fs-36);
+  }
+
+  .cv-title {
+    font-size: var(--fs-18);
+  }
+
+  .cv-bottombar {
+    display: block;
+    flex: 0 0 auto;
+    padding: var(--space-12) var(--space-20) var(--space-24);
+    border-top: var(--stroke-hairline) solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .cv-bottombar .cv-bottombar__download {
+    width: 100%;
+  }
+
+  /* Sheet slides up from the bottom, and back down to close. */
+  @media (prefers-reduced-motion: no-preference) {
+    .cv-overlay[data-state="open"] .cv-modal {
+      animation: cv-sheet-in 280ms var(--ease-out-soft) both;
+    }
+
+    .cv-overlay[data-state="closing"] .cv-modal {
+      animation: cv-sheet-in 280ms var(--ease-out-soft) reverse both;
+    }
+  }
+}
+
+@keyframes cv-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}

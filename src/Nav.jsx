@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./Nav.css";
 import { withBasePath } from "./pathUtils.js";
-import { CV_HREF } from "./siteLinks.js";
+import { CV_ROUTE } from "./siteLinks.js";
+import { useCv } from "./cv/CvContext.js";
 import logoSrc from "./assets/logo.svg";
 
 // Nav link (Figma 710:340). The current page gets the hover style + aria-current.
@@ -17,6 +18,7 @@ function NavLink({ current = false, highlight = false, className, children, ...r
 }
 
 function Nav({ currentPath = "/", navigate }) {
+  const { openCv } = useCv();
   const navRef = useRef(null);
   // Controls the fullscreen menu on tablet/mobile.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -134,10 +136,11 @@ function Nav({ currentPath = "/", navigate }) {
       <NavLink
         className={className}
         highlight
-        href={CV_HREF}
-        target="_blank"
-        rel="noreferrer"
-        onClick={() => setIsMenuOpen(false)}
+        href={withBasePath(CV_ROUTE)}
+        onClick={(event) => {
+          setIsMenuOpen(false);
+          openCv(event);
+        }}
       >
         Get CV
       </NavLink>

@@ -1,0 +1,89 @@
+{
+  "_note": "Must match JoaoSilva_Resume_2026.pdf. Update both together.",
+  "name": "João Silva",
+  "title": "Product Designer",
+  "contact": {
+    "phone": "+351 966 967 423",
+    "email": "joaoalmeidas.design@gmail.com",
+    "location": "Viseu, Portugal & Remote",
+    "website": "joaosilva.design",
+    "linkedin": "https://www.linkedin.com/in/imjoaosilva/"
+  },
+  "summary": "Product designer who works close to the code. 4 years on consumer and B2B mobile products, from offline-first field apps to habit loops, with handoff that engineers build from directly (coded prototypes, tokenized design systems). CS background before design.",
+  "skills": [
+    "Interaction design",
+    "User flows",
+    "Information architecture",
+    "Design systems",
+    "Prototyping",
+    "Usability testing",
+    "Developer handoff"
+  ],
+  "tools": [
+    "Figma",
+    "Maze",
+    "Miro",
+    "HTML/CSS",
+    "React",
+    "Claude Code"
+  ],
+  "languages": [
+    "Portuguese (Native)",
+    "English (Fluent)"
+  ],
+  "experience": [
+    {
+      "role": "Product Designer",
+      "company": "Visitplann",
+      "location": "Barcelos, Portugal",
+      "dates": "Jan 2023 – Present",
+      "bullets": [
+        "Designed a selective offline architecture for monument visits: auto-locked minimum content to avoid silent failures, added a tap to identify fallback in the event of CV detection failure and allowed users to select additional media prior to arrival.",
+        "Scaled routes from 10km day walks to 300km multi-day expeditions without splitting the entry point, after evaluating 4 competing approaches. Landed on progressive planning layers (day staging, itineraries, daily recaps, condition reporting) that unlock without disturbing the short-trail flow. Now used by Barcelos Municipality.",
+        "Field testing exposed implementation drift: undersized targets, collapsed spacing, overlapping components. Rebuilt the design system on Material 3 as 14 tokenized components with 44px minimum touch targets and every state annotated, plus a coded prototype engineers build from instead of interpreting mockups."
+      ]
+    },
+    {
+      "role": "Product Designer",
+      "company": "Knight Training App (Freelance)",
+      "location": "Remote",
+      "dates": "Sep 2025 – Present",
+      "bullets": [
+        "Designed the app’s core loop for club chess players, a weekly cycle of plan, practice, record, reflect and adjust. Every screen moves the player around it, and the reflect step connects their practice to rating history from Lichess.",
+        "Chose a weekly cycle over daily streaks after comparing daily, weekly and monthly planning, so a missed session is absorbed into the week. Plans can be built by hand, from one of 5 templates, or with “Suggest a plan”, sized to the player’s time, focus areas and rating.",
+        "Worked with the developer through the build, not just at handoff: when testing showed a mis-tap on Stop could lose a session, changed Stop to pause first.",
+        "Ran a closed beta with about 10 testers, and their feedback changed the core: committed plans can now be edited during the first 2 sessions before they lock."
+      ]
+    },
+    {
+      "role": "UI/UX Designer",
+      "company": "Spotlite",
+      "location": "Coimbra, Portugal",
+      "dates": "Jun 2022 – Sep 2022",
+      "bullets": [
+        "Evaluated the main web app (usability research and secondary research), presented redesign solutions to the team, and delivered responsive screens and implementation-ready prototypes under the lead designer."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Fine Arts in Multimedia Design",
+      "school": "University of Beira Interior",
+      "dates": "2019 – 2022",
+      "note": "Concentration in UI/UX and interface design, with supporting coursework in web development and marketing."
+    },
+    {
+      "degree": "Computer Science (Web Informatics)",
+      "school": "University of Beira Interior",
+      "dates": "2017 – 2019",
+      "note": "Coursework in programming fundamentals, software engineering, HCI and interface paradigms, before moving to Multimedia Design."
+    }
+  ],
+  "projects": [
+    {
+      "name": "BrancoPrata",
+      "meta": "In development · Designer + dev",
+      "description": "Full website redesign for a photography studio featured in Vogue."
+    }
+  ]
+}

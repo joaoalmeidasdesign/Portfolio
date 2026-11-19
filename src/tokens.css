@@ -104,18 +104,26 @@
   --cs-problem-title-width: 420px;
   --cs-table-status-width: 160px;
   --cs-brief-title-width: 360px;
+  --cv-modal-width: 960px;
+  --cv-sidebar-width: 240px;
+  --shadow-modal: 0 var(--space-40) 100px color-mix(in srgb, black 60%, transparent);
 
   /* Type scale (rem, from Figma px at 16px root) */
+  --fs-12: 0.75rem;
   --fs-13: 0.8125rem;
   --fs-14: 0.875rem;
   --fs-15: 0.9375rem;
   --fs-16: 1rem;
+  --fs-17: 1.0625rem;
   --fs-18: 1.125rem;
+  --fs-19: 1.1875rem;
   --fs-20: 1.25rem;
   --fs-24: 1.5rem;
   --fs-28: 1.75rem;
   --fs-32: 2rem;
+  --fs-36: 2.25rem;
   --fs-40: 2.5rem;
+  --fs-48: 3rem;
   --fs-56: 3.5rem;
   --fs-64: 4rem;
 }

@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { setupPageMotion } from "./motion.js";
+import CvOverlay from "./cv/CvOverlay.jsx";
+import { CvContext } from "./cv/CvContext.js";
+import { CV_ROUTE } from "./siteLinks.js";
 import Home from "./Home.jsx";
 import About from "./About.jsx";
 import CaptureHomeMobile from "./CaptureHomeMobile.jsx";
@@ -42,9 +45,25 @@ function getInitialPathname() {
   return getAppPathname();
 }
 
+// /cv shows the CV overlay on top of a page. The page underneath comes from
+// history state when the overlay was opened in-app, or Home on a direct visit.
+function getInitialState() {
+  const initial = getInitialPathname();
+  if (initial === CV_ROUTE) {
+    return { pathname: window.history.state?.cvFrom ?? "/", cvOpen: true };
+  }
+  return { pathname: initial, cvOpen: false };
+}
+
 function App() {
+  const [initialState] = useState(getInitialState);
   // The app uses pathname switching instead of a dedicated router dependency.
-  const [pathname, setPathname] = useState(getInitialPathname);
+  const [pathname, setPathname] = useState(initialState.pathname);
+  const [cvOpen, setCvOpen] = useState(initialState.cvOpen);
+  // The element that opened the CV, so focus can return to it on close.
+  const cvOpenerRef = useRef(null);
+  const pathnameRef = useRef(pathname);
+  pathnameRef.current = pathname;
   const isCaseStudyRoute = pathname.startsWith("/case-studies");
   const caseStudySlug = isCaseStudyRoute
     ? pathname.replace("/case-studies/", "").split("/")[0]
@@ -57,13 +76,53 @@ function App() {
   useEffect(() => {
     // Sync UI when users navigate with browser back/forward buttons.
     const handlePopState = () => {
-      setPathname(getAppPathname());
-      window.scrollTo({ top: 0, behavior: "auto" });
+      const nextPath = getAppPathname();
+      if (nextPath === CV_ROUTE) {
+        setCvOpen(true);
+        return;
+      }
+      setCvOpen(false);
+      // Closing the CV with Back keeps the page (and scroll) underneath.
+      if (nextPath !== pathnameRef.current) {
+        setPathname(nextPath);
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
     };
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
+  const openCv = useCallback((event) => {
+    event?.preventDefault?.();
+    cvOpenerRef.current = event?.currentTarget ?? document.activeElement;
+    window.history.pushState({ cvFrom: pathnameRef.current }, "", withBasePath(CV_ROUTE));
+    setCvOpen(true);
+  }, []);
+
+  const closeCv = useCallback(() => {
+    if (window.history.state?.cvFrom !== undefined) {
+      // Opened in-app: step back so Back/Forward stay consistent.
+      window.history.back();
+    } else {
+      // Direct visit to /cv: swap the URL for the page underneath.
+      window.history.replaceState({}, "", withBasePath(pathnameRef.current));
+      setCvOpen(false);
+    }
+  }, []);
+
+  // Return focus to whatever opened the CV once it closes.
+  const wasCvOpen = useRef(cvOpen);
+  useEffect(() => {
+    if (wasCvOpen.current && !cvOpen) {
+      const opener = cvOpenerRef.current;
+      if (opener && document.contains(opener)) opener.focus();
+      cvOpenerRef.current = null;
+    }
+    wasCvOpen.current = cvOpen;
+  }, [cvOpen]);
+
+  const cvContext = useMemo(() => ({ openCv }), [openCv]);
 
   // Shared navigation helper passed down to pages and the navbar.
   const navigate = (nextPath, options = {}) => {
@@ -83,24 +142,28 @@ function App() {
     scrollToHash(options.hash, options.behavior);
   };
 
+  let page;
   if (isCaseStudyRoute) {
-    if (ActiveCaseStudyPage) {
-      return <ActiveCaseStudyPage navigate={navigate} />;
-    }
-
-    return <CaseStudyNotice navigate={navigate} />;
+    page = ActiveCaseStudyPage ? (
+      <ActiveCaseStudyPage navigate={navigate} />
+    ) : (
+      <CaseStudyNotice navigate={navigate} />
+    );
+  } else if (pathname === "/about") {
+    page = <About navigate={navigate} />;
+  } else if (pathname === "/home-mobile") {
+    // Utility route used only when exporting a mobile frame to Figma.
+    page = <CaptureHomeMobile />;
+  } else {
+    page = <Home navigate={navigate} />;
   }
 
-  if (pathname === "/about") {
-    return <About navigate={navigate} />;
-  }
-
-  // Utility route used only when exporting a mobile frame to Figma.
-  if (pathname === "/home-mobile") {
-    return <CaptureHomeMobile />;
-  }
-
-  return <Home navigate={navigate} />;
+  return (
+    <CvContext.Provider value={cvContext}>
+      {page}
+      <CvOverlay open={cvOpen} onClose={closeCv} />
+    </CvContext.Provider>
+  );
 }
 
 export default App;

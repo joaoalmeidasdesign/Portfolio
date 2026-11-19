@@ -1,13 +1,13 @@
 import "./Footer.css";
 import Button from "./components/Button.jsx";
-import {
-  CONTACT_HREF,
-  CV_HREF,
-  LINKEDIN_HREF,
-} from "./siteLinks.js";
+import { CONTACT_HREF, CV_ROUTE, LINKEDIN_HREF } from "./siteLinks.js";
+import { withBasePath } from "./pathUtils.js";
+import { useCv } from "./cv/CvContext.js";
 
 // Contact band + footer (Figma "Page end" 701:384). Shared by every page.
 function Footer() {
+  const { openCv } = useCv();
+  const cvHref = withBasePath(CV_ROUTE);
   return (
     <div className="page-end">
       <section className="contact-band" id="contact" aria-labelledby="contact-title">
@@ -22,7 +22,7 @@ function Footer() {
             <Button href={CONTACT_HREF} variant="primary">
               Contact
             </Button>
-            <Button href={CV_HREF} variant="secondary" external>
+            <Button href={cvHref} variant="secondary" onClick={openCv}>
               Get CV
             </Button>
           </div>
@@ -41,7 +41,7 @@ function Footer() {
             <a href={CONTACT_HREF}>Email</a>
           </li>
           <li>
-            <a href={CV_HREF} target="_blank" rel="noreferrer">
+            <a href={cvHref} onClick={openCv}>
               Get CV
             </a>
           </li>

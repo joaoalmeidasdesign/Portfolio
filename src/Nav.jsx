@@ -5,13 +5,18 @@ import { CV_ROUTE } from "./siteLinks.js";
 import { useCv } from "./cv/CvContext.js";
 import logoSrc from "./assets/logo.svg";
 
-// Nav link (Figma 710:340). The current page gets the hover style + aria-current.
+// Nav link (Figma 710:340). The current page (or, for Work, the on-screen
+// section) gets the hover style + aria-current.
 function NavLink({ current = false, highlight = false, className, children, ...rest }) {
   const classes = [className, highlight ? "nav-link--highlight" : ""]
     .filter(Boolean)
     .join(" ");
   return (
-    <a className={classes} aria-current={current ? "page" : undefined} {...rest}>
+    <a
+      className={classes}
+      aria-current={current === true ? "page" : current || undefined}
+      {...rest}
+    >
       <span className="nav-link__label">{children}</span>
     </a>
   );
@@ -22,6 +27,24 @@ function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
   // Controls the fullscreen menu on tablet/mobile.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Work is only active while the Selected work section is on screen (Home).
+  const [isWorkInView, setIsWorkInView] = useState(false);
+
+  useEffect(() => {
+    if (currentPath !== "/") {
+      setIsWorkInView(false);
+      return undefined;
+    }
+    const section = document.getElementById("work");
+    if (!section || !("IntersectionObserver" in window)) return undefined;
+    // Active while the section crosses the middle band of the viewport.
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsWorkInView(entry.isIntersecting),
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [currentPath]);
 
   // Shared navigation helper so desktop and mobile links behave the same way.
   const handleNavigate = (event, nextPath, options) => {
@@ -114,7 +137,7 @@ function Nav({ currentPath = "/", navigate }) {
     <>
       <NavLink
         className={className}
-        current={currentPath === "/"}
+        current={isWorkInView ? "location" : false}
         href={`${withBasePath("/")}#work`}
         onClick={(event) =>
           handleNavigate(event, "/", { hash: "work", behavior: "smooth" })

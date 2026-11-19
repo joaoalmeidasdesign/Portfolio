@@ -72,4 +72,39 @@
   /* Focus ring */
   --focus-ring: 2px solid var(--color-accent);
   --focus-offset: 3px;
+
+  /* Strokes */
+  --stroke-hairline: 1px;
+  --stroke-bold: 2px;
+
+  /*
+    Component metrics taken from Figma that fall outside the spacing scale.
+    Kept here so components stay free of raw values.
+  */
+  --hit-min: 44px;
+  --button-pad-y-lg: var(--space-12);
+  --button-pad-x-lg: 18px;
+  --button-pad-y-sm: 9px;
+  --button-pad-x-sm: 14px;
+  --tag-pad-y: 6px;
+  --tag-pad-x: 14px;
+  --stat-pad: 28px;
+  --stat-gap: 6px;
+  --blur-frost: 12px;
+  --card-cover-height: 370px;
+  --page-pad-x: var(--space-80);
+  --nav-pad-x: 50px;
+  --badge-fill: color-mix(in srgb, var(--color-bg) 60%, transparent);
+
+  /* Type scale (rem, from Figma px at 16px root) */
+  --fs-13: 0.8125rem;
+  --fs-14: 0.875rem;
+  --fs-15: 0.9375rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-28: 1.75rem;
+  --fs-56: 3.5rem;
+  --fs-64: 4rem;
 }

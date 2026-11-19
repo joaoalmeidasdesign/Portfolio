@@ -1,10 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import "./Nav.css";
 import { withBasePath } from "./pathUtils.js";
+import { CV_HREF } from "./siteLinks.js";
 
-const CONTACT_HREF = "mailto:joaoalmeidas.design@gmail.com";
-const CV_HREF =
-  "https://1drv.ms/b/c/902868921bb862fd/IQDNMAmBmP0gR44XNho5mpgxAV1T9XiF9BEU2igpdQ6kjgQ?e=jnJMzN";
+// Nav link (Figma 710:340). The current page gets the hover style + aria-current.
+function NavLink({ current = false, highlight = false, className, children, ...rest }) {
+  const classes = [className, highlight ? "nav-link--highlight" : ""]
+    .filter(Boolean)
+    .join(" ");
+  return (
+    <a className={classes} aria-current={current ? "page" : undefined} {...rest}>
+      <span className="nav-link__label">{children}</span>
+    </a>
+  );
+}
 
 function Nav({ currentPath = "/", navigate }) {
   const navRef = useRef(null);
@@ -87,50 +96,70 @@ function Nav({ currentPath = "/", navigate }) {
     };
   }, [isMenuOpen]);
 
+  // Every page ends with the contact band (#contact), so Contact scrolls there.
+  const handleContact = (event) => {
+    const target = document.getElementById("contact");
+    if (!target) return;
+    event.preventDefault();
+    setIsMenuOpen(false);
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  const renderLinks = (className) => (
+    <>
+      <NavLink
+        className={className}
+        current={currentPath === "/"}
+        href={`${withBasePath("/")}#work`}
+        onClick={(event) =>
+          handleNavigate(event, "/", { hash: "work", behavior: "smooth" })
+        }
+      >
+        Work
+      </NavLink>
+      <NavLink
+        className={className}
+        current={currentPath === "/about"}
+        href={withBasePath("/about")}
+        onClick={(event) => handleNavigate(event, "/about")}
+      >
+        About
+      </NavLink>
+      <NavLink className={className} href="#contact" onClick={handleContact}>
+        Contact
+      </NavLink>
+      <NavLink
+        className={className}
+        highlight
+        href={CV_HREF}
+        target="_blank"
+        rel="noreferrer"
+        onClick={() => setIsMenuOpen(false)}
+      >
+        Get CV
+      </NavLink>
+    </>
+  );
+
   return (
-    <nav className={`navbar ${isMenuOpen ? "navbar-menu-open" : ""}`} ref={navRef}>
+    <nav
+      className={`navbar ${isMenuOpen ? "navbar-menu-open" : ""}`}
+      ref={navRef}
+      aria-label="Main"
+    >
       <div className="navbar-inner">
         <a
           className="navbar-logo"
           href={withBasePath("/")}
-          aria-label="Joao Silva portfolio home"
+          aria-label="João Silva, home"
           onClick={(event) => handleNavigate(event, "/")}
         >
-          <img
-            src={logoSrc}
-            alt="Joao Silva logo"
-            style={{ height: "40px" }}
-          />
+          <img className="navbar-logo__img" src={logoSrc} alt="" />
         </a>
-        <div className="navbar-buttons">
-          <a
-            className={`nav-btn ${currentPath === "/" ? "nav-btn-active" : ""}`}
-            href={`${withBasePath("/")}#work`}
-            onClick={(event) =>
-              handleNavigate(event, "/", { hash: "work", behavior: "smooth" })
-            }
-          >
-            Work
-          </a>
-          <a
-            className={`nav-btn ${currentPath === "/about" ? "nav-btn-active" : ""}`}
-            href={withBasePath("/about")}
-            onClick={(event) => handleNavigate(event, "/about")}
-          >
-            About
-          </a>
-          <a className="nav-btn" href={CONTACT_HREF}>
-            Contact
-          </a>
-          <a
-            className="nav-btn nav-btn-accent"
-            href={CV_HREF}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Get CV
-          </a>
-        </div>
+        <div className="navbar-buttons">{renderLinks("nav-link")}</div>
         <button
           // Hamburger / close control used below desktop widths.
           className={`nav-toggle ${isMenuOpen ? "is-open" : ""}`}
@@ -150,38 +179,7 @@ function Nav({ currentPath = "/", navigate }) {
         // Fullscreen overlay menu. It is only rendered while open.
         <div className="navbar-menu is-open">
           <div className="navbar-menu-inner">
-            <a
-              className={`navbar-menu-link ${currentPath === "/" ? "nav-btn-active" : ""}`}
-              href={`${withBasePath("/")}#work`}
-              onClick={(event) =>
-                handleNavigate(event, "/", { hash: "work", behavior: "smooth" })
-              }
-            >
-              Work
-            </a>
-            <a
-              className={`navbar-menu-link ${currentPath === "/about" ? "nav-btn-active" : ""}`}
-              href={withBasePath("/about")}
-              onClick={(event) => handleNavigate(event, "/about")}
-            >
-              About
-            </a>
-            <a
-              className="navbar-menu-link"
-              href={CONTACT_HREF}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </a>
-            <a
-              className="navbar-menu-link nav-btn-accent"
-              href={CV_HREF}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Get CV
-            </a>
+            {renderLinks("nav-link navbar-menu-link")}
           </div>
         </div>
       ) : null}

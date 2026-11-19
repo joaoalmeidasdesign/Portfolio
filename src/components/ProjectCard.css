@@ -1,0 +1,202 @@
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  padding-bottom: var(--space-24);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background-color: var(--fill-card);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform var(--duration-base) ease-out;
+}
+
+/* Hover border drawn inside the card so its size never changes. */
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: var(--stroke-bold) solid var(--color-accent);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) ease-out;
+}
+
+.project-card:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.project-card__cover {
+  position: relative;
+  height: var(--card-cover-height);
+  overflow: hidden;
+}
+
+.project-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease-out;
+}
+
+.project-card__read-time {
+  position: absolute;
+  top: var(--space-24);
+  right: var(--space-24);
+  margin: 0;
+  font-size: var(--fs-16);
+  font-weight: var(--font-regular);
+  line-height: 1.125;
+}
+
+.project-card__read-time--light {
+  color: var(--color-text-soft);
+}
+
+.project-card__read-time--dark {
+  color: var(--color-bg);
+}
+
+.project-card__badges {
+  position: absolute;
+  left: var(--space-24);
+  right: var(--space-24);
+  bottom: var(--space-24);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--tag-pad-y) var(--space-12);
+  border-radius: var(--radius-xl);
+  background-color: var(--badge-fill);
+  color: var(--color-text-soft);
+  font-family: "Inter", var(--font-family);
+  font-size: var(--fs-14);
+  font-weight: var(--font-medium);
+  line-height: var(--space-16);
+  white-space: nowrap;
+}
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: 0 var(--space-24);
+}
+
+.project-card__title {
+  margin: 0;
+  font-size: var(--fs-24);
+  font-weight: var(--font-black);
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+}
+
+.project-card__description {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: var(--fs-18);
+  font-weight: var(--font-light);
+  line-height: 1.3333;
+}
+
+.project-card__stats {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-40);
+  padding-top: var(--space-4);
+}
+
+.project-card__stat-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16) var(--space-40);
+}
+
+.project-card .stat--inline {
+  gap: calc(var(--space-4) / 2);
+}
+
+.project-card__cta {
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(var(--space-8));
+  transition:
+    opacity var(--duration-base) ease-out 60ms,
+    transform var(--duration-base) ease-out 60ms;
+}
+
+/* Hover / keyboard focus */
+.project-card:hover::after,
+.project-card:focus-visible::after {
+  opacity: 1;
+}
+
+.project-card:hover .project-card__cta,
+.project-card:focus-visible .project-card__cta {
+  opacity: 1;
+  transform: none;
+  background-color: var(--fill-button-primary-hover);
+}
+
+@media (hover: hover) {
+  .project-card:hover,
+  .project-card:focus-visible {
+    transform: translateY(calc(var(--space-4) * -1));
+  }
+
+  .project-card:hover .project-card__image,
+  .project-card:focus-visible .project-card__image {
+    transform: scale(1.03);
+  }
+}
+
+/* Touch: no hover, so the button is always shown and the card never lifts. */
+@media (hover: none) {
+  .project-card__cta {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-card__cover {
+    height: auto;
+    aspect-ratio: 660 / 370;
+  }
+
+  .project-card__stats {
+    flex-wrap: wrap;
+    gap: var(--space-16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card__image,
+  .project-card__cta {
+    transition: opacity var(--duration-base) ease-out;
+  }
+
+  .project-card:hover,
+  .project-card:focus-visible,
+  .project-card:hover .project-card__image,
+  .project-card:focus-visible .project-card__image,
+  .project-card__cta {
+    transform: none;
+  }
+}
